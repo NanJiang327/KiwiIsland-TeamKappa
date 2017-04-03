@@ -2,7 +2,12 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Component;
 import java.awt.GridLayout;
+
+
+import java.awt.event.*;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
@@ -24,6 +29,7 @@ public class KiwiCountUI
      * Creates a GUI for the KiwiIsland game.
      * @param game the game object to represent with this GUI.
      */
+	
     public KiwiCountUI(Game game) 
     {
         assert game != null : "Make sure game object is created before UI";
@@ -32,6 +38,7 @@ public class KiwiCountUI
         initComponents();
         initIslandGrid();
         update();
+        setVisible(true);
     }
     
     /**
@@ -72,6 +79,47 @@ public class KiwiCountUI
      private void setAsGameListener()
     {
        game.addGameEventListener(this); 
+       
+       this.addKeyListener(new KeyListener()
+       {
+       @Override//¼ü±»°´ÏÂ  
+       public void keyPressed(KeyEvent e) 
+       {  
+              switch(e.getKeyCode())  
+              {  
+                  case KeyEvent.VK_UP:  
+                  	game.playerMove(MoveDirection.NORTH);
+                  	System.out.println("1111111111111");
+                      break;  
+                  case KeyEvent.VK_DOWN:  
+                  	game.playerMove(MoveDirection.SOUTH);
+                  	System.out.println("222222222222");
+                      break;  
+                  case KeyEvent.VK_LEFT:  
+                  	game.playerMove(MoveDirection.WEST); 
+                  	System.out.println("3333333333");
+                      break;  
+                  case KeyEvent.VK_RIGHT:  
+                  	game.playerMove(MoveDirection.EAST);
+                  	System.out.println("444444444");
+                      break;  
+              }  
+                
+          }  
+          
+          @Override
+      	public void keyReleased(KeyEvent e) {
+      		// TODO Auto-generated method stub
+      		
+      	}
+
+      	@Override
+      	public void keyTyped(KeyEvent e) {
+      		// TODO Auto-generated method stub
+      	}	
+       });
+       setVisible(true);
+
     }
      
     /**
@@ -169,7 +217,7 @@ public class KiwiCountUI
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
-
+        
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
 
@@ -420,7 +468,7 @@ public class KiwiCountUI
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlInventory.add(btnDrop, gridBagConstraints);
-
+        
         btnUse.setText("Use");
         btnUse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -526,6 +574,7 @@ public class KiwiCountUI
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
 
     private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveEastActionPerformed
         game.playerMove(MoveDirection.EAST);
@@ -622,7 +671,10 @@ public class KiwiCountUI
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
+
     // End of variables declaration//GEN-END:variables
 
     private Game game;
+
+    
 }
