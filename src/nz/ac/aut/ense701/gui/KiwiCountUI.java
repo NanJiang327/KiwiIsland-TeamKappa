@@ -79,7 +79,7 @@ public class KiwiCountUI
      private void setAsGameListener()
     {
        game.addGameEventListener(this); 
-       
+       //Add key listener to control the movement.
        this.addKeyListener(new KeyListener()
        {
        @Override//¼ü±»°´ÏÂ  
@@ -89,19 +89,15 @@ public class KiwiCountUI
               {  
                   case KeyEvent.VK_UP:  
                   	game.playerMove(MoveDirection.NORTH);
-                  	System.out.println("1111111111111");
                       break;  
                   case KeyEvent.VK_DOWN:  
                   	game.playerMove(MoveDirection.SOUTH);
-                  	System.out.println("222222222222");
                       break;  
                   case KeyEvent.VK_LEFT:  
                   	game.playerMove(MoveDirection.WEST); 
-                  	System.out.println("3333333333");
                       break;  
                   case KeyEvent.VK_RIGHT:  
                   	game.playerMove(MoveDirection.EAST);
-                  	System.out.println("444444444");
                       break;  
               }  
                 
