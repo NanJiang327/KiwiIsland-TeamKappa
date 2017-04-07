@@ -21,7 +21,7 @@ public class LoginPage{
 
     public LoginPage()  
     {  
-    	
+    	dbc = new DbConnect();
     	LoginFrame = new JFrame();
     	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
