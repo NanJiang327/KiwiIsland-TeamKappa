@@ -69,7 +69,10 @@ public class DbConnect {
 			try{
 				Connection connection = DriverManager.getConnection(url,user,dbpwd);
 				 Statement stmt = connection.createStatement();
-			      ResultSet rs = stmt.executeQuery("SELECT FROM Users WHERE Username = "+username+"");
+			      ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE Username = '"+username+"'");
+                              while (rs.next()) {
+                                System.out.println(rs.getString("Username"));
+                               }
 			      if(rs.getRow()!=0){
 			    	  found = true;
 			    	  if(pwd.equals(rs.getString(1))){
