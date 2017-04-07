@@ -15,6 +15,7 @@ public class RegisterPage{
     private JPasswordField JPwd,JPwdCheck;  
     private JLabel JLUsername,JLPwd,JLPwdCheck; 
     private String pwd,pwdCheck,username,usernameFormat,pwdFormat;
+    private JFrame registerFrame;
     private boolean success=false;
 
 
@@ -22,7 +23,7 @@ public class RegisterPage{
     public RegisterPage()  
     {  
     	dbc = new DbConnect();
-    	JFrame registerFrame = new JFrame();
+    	registerFrame = new JFrame();
     	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
     	registerFrame.setLocation(w, h);

@@ -5,18 +5,18 @@ import javax.swing.*;
   
 public class LoginPage{  
   
-	BackPanel loginPanel;
-	JFrame loginFrame;
-    JButton JbLogin,JbCancel;  
-    JTextField JTUsername;  
-    JPasswordField JPwd;  
-    JLabel JLUsername,JLPwd;  
+	private BackPanel loginPanel;
+	private JFrame LoginFrame;
+    private JButton JbLogin,JbCancel;  
+    private JTextField JTUsername;  
+    private JPasswordField JPwd;  
+    private JLabel JLUsername,JLPwd;  
       
 
     public LoginPage()  
     {  
     	
-    	JFrame LoginFrame = new JFrame();
+    	LoginFrame = new JFrame();
     	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
     	LoginFrame.setLocation(w, h);
