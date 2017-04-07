@@ -1,16 +1,22 @@
 package nz.ac.aut.ense701.gui;
 
-import java.awt.*;  
+import java.awt.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.*;  
   
 public class LoginPage{  
   
 	private BackPanel loginPanel;
+	private DbConnect dbc;
 	private JFrame LoginFrame;
     private JButton JbLogin,JbCancel;  
     private JTextField JTUsername;  
     private JPasswordField JPwd;  
-    private JLabel JLUsername,JLPwd;  
+    private JLabel JLUsername,JLPwd; 
+    private String pwd,username,usernameFormat,pwdFormat; 
+    private boolean success = false;
       
 
     public LoginPage()  
@@ -30,7 +36,7 @@ public class LoginPage{
         JbLogin.addActionListener(new java.awt.event.ActionListener() {
         	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
+                verify();
             }
         });
         //Create cancel button       
@@ -84,6 +90,65 @@ public class LoginPage{
         LoginFrame.setSize(1036, 800);  
         LoginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
         LoginFrame.setVisible(true);  
-    }  
+    } 
+    
+    public void verify(){
+    	//the username format
+    	usernameFormat = "[a-zA-Z0-9_]{5,15}";
+    	//the password format.
+    	pwdFormat = "[a-zA-Z0-9]{5,15}";
+    	
+    	username = JTUsername.getText().toString();
+    	char[] pass= JPwd.getPassword();
+    	pwd = String.valueOf(pass);
+    	
+    	Pattern userPattern = Pattern.compile(usernameFormat);
+    	Pattern pwdPattern = Pattern.compile(pwdFormat);
+    	
+    	//Set usernmae, password pattern
+    	Matcher usernameMatcher = userPattern.matcher(username);
+    	Matcher pwdMatcher = pwdPattern.matcher(pwd);
+    	
+    	if(usernameMatcher.matches())
+    	{
+    		if(pwdMatcher.matches())
+    		{
+    				dbc.verify(username, pwd);
+    				if(dbc.isFound())
+    				{
+    					if(dbc.isVerified())
+    					{
+    						success = true;
+    						JOptionPane.showMessageDialog(null, "Success!");
+    					}
+    					else
+    					{
+        					JOptionPane.showMessageDialog(null, "Password or Username is wrong","Error!", JOptionPane.ERROR_MESSAGE);
+        		    		JTUsername.setText("");
+        		    		JPwd.setText("");
+    					}	
+    	              
+    				}
+    				else
+    				{
+    					JOptionPane.showMessageDialog(null, "This username doesn't exist.","Error!", JOptionPane.ERROR_MESSAGE);
+    		    		JTUsername.setText("");
+    		    		JPwd.setText("");
+    				}
+    				
+    				
+    			}else{
+    				JOptionPane.showMessageDialog(null, "The password can only have numbers and letters, the length of password is between 5 to 15.","Error", JOptionPane.ERROR_MESSAGE);
+    				JTUsername.setText("");
+    	    		JPwd.setText("");				
+    			}
+    	}
+    	else
+    	{
+    		JOptionPane.showMessageDialog(null, "The username can only have numbers,letters and _,the length of username is between 5 to 15", "Error!", JOptionPane.ERROR_MESSAGE);
+    		JTUsername.setText("");
+    		JPwd.setText("");
+    	}
+    }
   
 }  

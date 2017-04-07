@@ -10,8 +10,10 @@ public class DbConnect {
 	private String url ="jdbc:mysql://se2017db.cpm46kcfxj7j.us-west-2.rds.amazonaws.com/se2017db";
 	private String user = "j499521010";
 	private String dbpwd = "123.comwyxx";
+
     private boolean found = false;
-	
+    private boolean verified = false;
+
 	public void checkDB(String username){
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -57,6 +59,36 @@ public class DbConnect {
 			 }	
 		
 	}
+	
+	public void verify(String username,String pwd){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			try{
+				Connection connection = DriverManager.getConnection(url,user,dbpwd);
+				 Statement stmt = connection.createStatement();
+			      ResultSet rs = stmt.executeQuery("SELECT FROM Users WHERE Username = "+username+"");
+			      if(rs.getRow()!=0){
+			    	  found = true;
+			    	  if(pwd.equals(rs.getString(1))){
+			    		  verified = true;
+			    	  }else{
+			    		  verified = false;
+			    	  }
+			      }else{
+			    	   
+			    	   found = false;  
+			      }
+			      
+
+			 }
+			 catch (Exception e) {
+			        System.out.print("Can't connect to server");
+			        e.printStackTrace();     
+			 }			
+	}
 
 	public boolean isFound() {
 		return found;
@@ -65,6 +97,15 @@ public class DbConnect {
 	public void setFound(boolean found) {
 		this.found = found;
 	}	
+	
+	
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
 }
 			  
 
