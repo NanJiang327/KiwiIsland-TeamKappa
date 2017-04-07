@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbConnect {
@@ -47,7 +46,6 @@ public class DbConnect {
 			}
 			try{
 				Connection connection = DriverManager.getConnection(url,user,dbpwd);
-				//Statement stmt = connection.createStatement();
 				PreparedStatement ps = connection.prepareStatement("INSERT INTO Users VALUES ('"+username+"','"+pwd+"',null)");
 				ps.executeUpdate();
 

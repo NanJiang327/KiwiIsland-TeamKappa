@@ -1,11 +1,9 @@
 package nz.ac.aut.ense701.gui;
 
-import java.awt.Graphics;
-import java.awt.Image;
+
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -25,7 +23,7 @@ public class IntroductionPage {
 	    public IntroductionPage()  
 	    {  
 	    	
-	    	JFrame IntroFrame = new JFrame();
+	    	IntroFrame = new JFrame();
 	    	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
 	    	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
 	    	IntroFrame.setLocation(w, h);
