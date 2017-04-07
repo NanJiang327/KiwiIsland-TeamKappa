@@ -28,6 +28,7 @@ public class LoginPage{
         JbLogin.setBounds(450, 600, 150, 50);
         JbLogin.setIcon(loginIcon);
         JbLogin.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
             }
@@ -37,6 +38,7 @@ public class LoginPage{
         JbCancel.setIcon(CancelIcon);
         JbCancel.setBounds(450, 660, 150, 50);
         JbCancel.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	//close the register page
                 LoginFrame.dispose();
@@ -53,13 +55,13 @@ public class LoginPage{
         JPwd.setBounds(475,450,200,25);
           
         //Set up the username label and position
-        JLUsername=new JLabel("Username£º"); 
+        JLUsername=new JLabel("Username:"); 
         JLUsername.setFont(new  java.awt.Font("Dialog",   1,   20));
         JLUsername.setForeground(Color.cyan);
         JLUsername.setBounds(350,400,200,25);
         
         //Set up password label and postion.
-        JLPwd=new JLabel("Password£º");
+        JLPwd=new JLabel("Password:");
         JLPwd.setBounds(350,450,200,25);
         JLPwd.setFont(new  java.awt.Font("Dialog",   1,   20));
         JLPwd.setForeground(Color.cyan);

@@ -36,6 +36,7 @@ public class IntroductionPage {
 	        JbLogin.setBounds(450, 600, 150, 50);
 	        JbLogin.setIcon(loginIcon);
 	        JbLogin.addActionListener(new java.awt.event.ActionListener() {
+	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	            	loginPage = new LoginPage();
 	            	IntroFrame.dispose();
@@ -47,6 +48,7 @@ public class IntroductionPage {
 	        JbRegister.setBounds(450, 660, 150, 50);
 	        JbRegister.setIcon(RegisterIcon);
 	        JbRegister.addActionListener(new java.awt.event.ActionListener() {
+	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	                registerPage = new RegisterPage();
 	                IntroFrame.dispose();

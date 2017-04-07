@@ -35,6 +35,7 @@ public class RegisterPage{
         JbRegister.setIcon(RegisterIcon);
         JbRegister.setBounds(450, 600, 150, 50);
         JbRegister.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	db();
             	if(success){
@@ -48,9 +49,9 @@ public class RegisterPage{
         JbCancel.setIcon(CancelIcon);
         JbCancel.setBounds(450, 660, 150, 50);
         JbCancel.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	//close the register page
-            	
                 registerFrame.dispose();
                 new IntroductionPage();
 
@@ -71,19 +72,19 @@ public class RegisterPage{
         JPwdCheck.setBounds(475,500, 200, 25);
           
         //Set up the username label and position
-        JLUsername=new JLabel("Username£º"); 
+        JLUsername=new JLabel("Username:"); 
         JLUsername.setFont(new  java.awt.Font("Dialog",   1,   20));
         JLUsername.setForeground(Color.cyan);
         JLUsername.setBounds(350,400,200,25);
         
         //Set up password label and position.
-        JLPwd=new JLabel("Password£º");
+        JLPwd=new JLabel("Password:");
         JLPwd.setBounds(350,450,200,25);
         JLPwd.setFont(new  java.awt.Font("Dialog",   1,   20));
         JLPwd.setForeground(Color.cyan);
         
         //Set up the confirm password label and position
-        JLPwdCheck=new JLabel("Confirm Password£º");
+        JLPwdCheck=new JLabel("Confirm Password:");
         JLPwdCheck.setBounds(270,500,200,25);
         JLPwdCheck.setFont(new  java.awt.Font("Dialog",   1,   20));
         JLPwdCheck.setForeground(Color.cyan);
