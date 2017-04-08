@@ -124,7 +124,7 @@ public class RegisterPage{
     	pwd = String.valueOf(pass);
     	
     	pwdCheck = JPwdCheck.getPassword().toString();
-    	char[] passChcek= JPwd.getPassword();
+    	char[] passChcek= JPwdCheck.getPassword();
     	pwdCheck = String.valueOf(passChcek);
     	
     	//Compile the pattern
@@ -138,6 +138,8 @@ public class RegisterPage{
     	
     	if(usernameMatcher.matches())
     	{
+    		System.out.println(pwd);
+    		System.out.println(pwdCheck);
     		if(pwd.equals(pwdCheck))
     		{
     			if(pwdMatcher.matches()&&pwdCheckMatcher.matches()){
@@ -154,6 +156,7 @@ public class RegisterPage{
     		    		JTUsername.setText("");
     		    		JPwd.setText("");
     					JPwdCheck.setText("");
+    					JTUsername.requestFocus();
     				}
     				
     				
@@ -161,7 +164,8 @@ public class RegisterPage{
     				JOptionPane.showMessageDialog(null, "The password can only have numbers and letters, the length of password is between 5 to 15.","Error", JOptionPane.ERROR_MESSAGE);
     				JTUsername.setText("");
     	    		JPwd.setText("");
-    				JPwdCheck.setText("");  				
+    				JPwdCheck.setText("");
+    				JTUsername.requestFocus();
     			}
     		}
     		else
@@ -170,6 +174,7 @@ public class RegisterPage{
     			JTUsername.setText("");
         		JPwd.setText("");
     			JPwdCheck.setText("");
+    			JTUsername.requestFocus();
     		} 		
     	}
     	else
@@ -178,6 +183,7 @@ public class RegisterPage{
     		JTUsername.setText("");
     		JPwd.setText("");
 			JPwdCheck.setText("");
+			JTUsername.requestFocus();
     	}
     
 

@@ -4,7 +4,9 @@ import java.awt.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.*;  
+import javax.swing.*;
+
+import nz.ac.aut.ense701.gameModel.Game;  
   
 public class LoginPage{  
   
@@ -37,6 +39,22 @@ public class LoginPage{
         	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verify();
+                if(success){
+                	LoginFrame.dispose();
+                	// create the game object
+                    final Game game = new Game();
+                    // create the GUI for the game
+                    final KiwiCountUI  gui  = new KiwiCountUI(game);
+                    // make the GUI visible
+                    java.awt.EventQueue.invokeLater(new Runnable() 
+                    {
+                        @Override
+                        public void run() 
+                        {
+                            gui.setVisible(true);
+                        }
+                    });
+                }
             }
         });
         //Create cancel button       
@@ -114,7 +132,7 @@ public class LoginPage{
     		if(pwdMatcher.matches())
     		{
     				dbc.verify(username, pwd);
-    				if(dbc.isFound())
+    				if(dbc.isLoginFound())
     				{
     					if(dbc.isVerified())
     					{
@@ -126,6 +144,7 @@ public class LoginPage{
         					JOptionPane.showMessageDialog(null, "Password or Username is wrong","Error!", JOptionPane.ERROR_MESSAGE);
         		    		JTUsername.setText("");
         		    		JPwd.setText("");
+        		    		JTUsername.requestFocus();
     					}	
     	              
     				}
@@ -134,13 +153,15 @@ public class LoginPage{
     					JOptionPane.showMessageDialog(null, "This username doesn't exist.","Error!", JOptionPane.ERROR_MESSAGE);
     		    		JTUsername.setText("");
     		    		JPwd.setText("");
+    		    		JTUsername.requestFocus();
     				}
     				
     				
     			}else{
     				JOptionPane.showMessageDialog(null, "The password can only have numbers and letters, the length of password is between 5 to 15.","Error", JOptionPane.ERROR_MESSAGE);
     				JTUsername.setText("");
-    	    		JPwd.setText("");				
+    	    		JPwd.setText("");
+    	    		JTUsername.requestFocus();
     			}
     	}
     	else
@@ -148,6 +169,7 @@ public class LoginPage{
     		JOptionPane.showMessageDialog(null, "The username can only have numbers,letters and _,the length of username is between 5 to 15", "Error!", JOptionPane.ERROR_MESSAGE);
     		JTUsername.setText("");
     		JPwd.setText("");
+    		JTUsername.requestFocus();
     	}
     }
   

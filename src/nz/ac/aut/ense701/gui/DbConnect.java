@@ -6,12 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class DbConnect {
 	private String url ="jdbc:mysql://se2017db.cpm46kcfxj7j.us-west-2.rds.amazonaws.com/se2017db";
 	private String user = "j499521010";
 	private String dbpwd = "123.comwyxx";
 
     private boolean found = false;
+    private boolean loginFound = false;
     private boolean verified = false;
 
 	public void checkDB(String username){
@@ -68,23 +71,24 @@ public class DbConnect {
 			}
 			try{
 				Connection connection = DriverManager.getConnection(url,user,dbpwd);
-				 Statement stmt = connection.createStatement();
-			      ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE Username = '"+username+"'");
-                              while (rs.next()) {
-                                System.out.println(rs.getString("Username"));
-                               }
-			      if(rs.getRow()!=0){
-			    	  found = true;
-			    	  if(pwd.equals(rs.getString(1))){
-			    		  verified = true;
-			    	  }else{
-			    		  verified = false;
-			    	  }
-			      }else{
-			    	   
-			    	   found = false;  
-			      }
-			      
+				System.out.println("Success connect Mysql server!"); 
+				Statement stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from Users");
+			    while (rs.next()) {
+			          if(username.equals(rs.getString("Username"))){
+			        	  loginFound = true;
+			        	  if(pwd.equals(rs.getString("Password"))){
+				    		  verified = true;
+				    	  }else{
+				    		  verified = false;
+				    	  }
+			        	  break;
+			          }
+
+			     }
+			    if(!loginFound){
+			    	JOptionPane.showMessageDialog(null, "This username d","Error!", JOptionPane.ERROR_MESSAGE);
+			    }
 
 			 }
 			 catch (Exception e) {
@@ -108,6 +112,14 @@ public class DbConnect {
 
 	public void setVerified(boolean verified) {
 		this.verified = verified;
+	}
+
+	public boolean isLoginFound() {
+		return loginFound;
+	}
+
+	public void setLoginFound(boolean loginFound) {
+		this.loginFound = loginFound;
 	}
 }
 			  
