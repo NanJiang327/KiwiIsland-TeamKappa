@@ -138,8 +138,6 @@ public class RegisterPage{
     	
     	if(usernameMatcher.matches())
     	{
-    		System.out.println(pwd);
-    		System.out.println(pwdCheck);
     		if(pwd.equals(pwdCheck))
     		{
     			if(pwdMatcher.matches()&&pwdCheckMatcher.matches()){
@@ -147,7 +145,7 @@ public class RegisterPage{
     				if(!dbc.isFound()){
     					dbc.insertToDb(username,pwd);
     					success = true;
-    					JOptionPane.showMessageDialog(null, "Register success!");
+    					JOptionPane.showMessageDialog(null, "Register success!\n Username:"+username+"\n Password:"+pwd+"\nDon't forget your username and password!");
     	              
     				}
     				else
