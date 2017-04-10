@@ -13,9 +13,9 @@ public class DbConnect {
 	private String user = "j499521010";
 	private String dbpwd = "123.comwyxx";
 
-    private boolean found = false;
-    private boolean loginFound = false;
-    private boolean verified = false;
+    private boolean found;
+    private boolean loginFound;
+    private boolean verified;
 
 	public void checkDB(String username){
 	try{
@@ -24,6 +24,7 @@ public class DbConnect {
 			e.printStackTrace();
 		}
 		try{
+			found = false;
 			Connection connection = DriverManager.getConnection(url,user,dbpwd);
 			System.out.println("Success connect Mysql server!"); 
 			Statement stmt = connection.createStatement();
@@ -70,6 +71,7 @@ public class DbConnect {
 				e.printStackTrace();
 			}
 			try{
+				loginFound = false;
 				Connection connection = DriverManager.getConnection(url,user,dbpwd);
 				System.out.println("Success connect Mysql server!"); 
 				Statement stmt = connection.createStatement();
