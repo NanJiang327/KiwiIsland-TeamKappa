@@ -40,7 +40,7 @@ public class RegisterPage{
             	db();
             	if(success){
             		registerFrame.dispose();
-            		new IntroductionPage();
+            		new LoginPage();
             	}
             }
         });
@@ -53,7 +53,7 @@ public class RegisterPage{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	//close the register page
                 registerFrame.dispose();
-                new IntroductionPage();
+                new LoginPage();
 
             }
         });
@@ -147,7 +147,7 @@ public class RegisterPage{
     				if(!dbc.isFound()){
     					dbc.insertToDb(username,pwd);
     					success = true;
-    					JOptionPane.showMessageDialog(null, "Success!");
+    					JOptionPane.showMessageDialog(null, "Register success!");
     	              
     				}
     				else

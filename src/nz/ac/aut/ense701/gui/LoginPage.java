@@ -3,17 +3,15 @@ package nz.ac.aut.ense701.gui;
 import java.awt.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.*;
-
-import nz.ac.aut.ense701.gameModel.Game;  
+import nz.ac.aut.ense701.gameModel.Game;
   
 public class LoginPage{  
   
 	private BackPanel loginPanel;
 	private DbConnect dbc;
 	private JFrame LoginFrame;
-    private JButton JbLogin,JbCancel;  
+    private JButton JbLogin,JbRegister;  
     private JTextField JTUsername;  
     private JPasswordField JPwd;  
     private JLabel JLUsername,JLPwd; 
@@ -30,7 +28,7 @@ public class LoginPage{
     	LoginFrame.setLocation(w, h);
     	//Read the images
     	ImageIcon loginIcon = new ImageIcon(getClass().getResource("/images/icon/Login.png"));
-    	ImageIcon CancelIcon = new ImageIcon(getClass().getResource("/images/icon/Cancel.png"));
+    	ImageIcon RegisterIcon = new ImageIcon(getClass().getResource("/images/icon/Register.png"));
         //Create login button 
         JbLogin=new JButton();
         JbLogin.setBounds(450, 600, 150, 50);
@@ -41,32 +39,21 @@ public class LoginPage{
                 verify();
                 if(success){
                 	LoginFrame.dispose();
-                	// create the game object
-                    final Game game = new Game();
-                    // create the GUI for the game
-                    final KiwiCountUI  gui  = new KiwiCountUI(game);
-                    // make the GUI visible
-                    java.awt.EventQueue.invokeLater(new Runnable() 
-                    {
-                        @Override
-                        public void run() 
-                        {
-                            gui.setVisible(true);
-                        }
-                    });
+                	IntroductionPage introPage = new IntroductionPage();
+                	
                 }
             }
         });
         //Create cancel button       
-        JbCancel=new JButton();
-        JbCancel.setIcon(CancelIcon);
-        JbCancel.setBounds(450, 660, 150, 50);
-        JbCancel.addActionListener(new java.awt.event.ActionListener() {
+        JbRegister=new JButton();
+        JbRegister.setIcon(RegisterIcon);
+        JbRegister.setBounds(450, 660, 150, 50);
+        JbRegister.addActionListener(new java.awt.event.ActionListener() {
         	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	//close the register page
                 LoginFrame.dispose();
-                new IntroductionPage();
+                new RegisterPage();
             }
         });
         
@@ -94,7 +81,7 @@ public class LoginPage{
         loginPanel=new BackPanel();
         loginPanel.setLayout(null);
         loginPanel.add(JbLogin);
-        loginPanel.add(JbCancel);
+        loginPanel.add(JbRegister);
         loginPanel.add(JTUsername);
         loginPanel.add(JLUsername);
         loginPanel.add(JPwd);
@@ -137,7 +124,7 @@ public class LoginPage{
     					if(dbc.isVerified())
     					{
     						success = true;
-    						JOptionPane.showMessageDialog(null, "Success!");
+    						JOptionPane.showMessageDialog(null, "Welcome back! User "+username+"");
     					}
     					else
     					{

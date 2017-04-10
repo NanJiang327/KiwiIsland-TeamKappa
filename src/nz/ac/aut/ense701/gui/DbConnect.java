@@ -86,9 +86,6 @@ public class DbConnect {
 			          }
 
 			     }
-			    if(!loginFound){
-			    	JOptionPane.showMessageDialog(null, "This username d","Error!", JOptionPane.ERROR_MESSAGE);
-			    }
 
 			 }
 			 catch (Exception e) {

@@ -1,14 +1,12 @@
 package nz.ac.aut.ense701.main;
 
-import nz.ac.aut.ense701.gameModel.Game;
-import nz.ac.aut.ense701.gui.IntroductionPage;
-import nz.ac.aut.ense701.gui.KiwiCountUI;
+import nz.ac.aut.ense701.gui.LoginPage;
 
 /**
  * Kiwi Count Project
  * 
- * @author AS
- * @version 2011
+ * @author TEAM-KAPPA
+ * @version 2017
  */
 public class Main 
 {
@@ -20,7 +18,24 @@ public class Main
     public static void main(String[] args) 
     {
         //create the introduction page;
-    	IntroductionPage introPage = new IntroductionPage();
+    	LoginPage loginPage = new LoginPage();
+    	
+    /*
+    	// create the game object
+        final Game game = new Game();
+        // create the GUI for the game
+        final KiwiCountUI  gui  = new KiwiCountUI(game);
+        gui.requestFocus();
+        // make the GUI visible
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run() 
+            {
+                gui.setVisible(true);
+            }
+        });
+    */	
     }
 
 }
