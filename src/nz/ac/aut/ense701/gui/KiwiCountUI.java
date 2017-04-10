@@ -2,11 +2,12 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Component;
 import java.awt.GridLayout;
-
-
+import java.awt.Toolkit;
 import java.awt.event.*;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
@@ -35,6 +36,11 @@ public class KiwiCountUI
         assert game != null : "Make sure game object is created before UI";
         this.game = game;
         setAsGameListener();
+        int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 856) / 2;
+    	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 667) / 2;
+    	setLocation(w, h);
+    	setResizable(false); 
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
         initComponents();
         initIslandGrid();
         update();

@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 public class DbConnect {
 	private String url ="jdbc:mysql://se2017db.cpm46kcfxj7j.us-west-2.rds.amazonaws.com/se2017db";
 	private String user = "j499521010";

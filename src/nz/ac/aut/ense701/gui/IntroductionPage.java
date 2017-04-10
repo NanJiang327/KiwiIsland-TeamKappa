@@ -39,7 +39,8 @@ public class IntroductionPage {
 	        JbStart.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	            	//Todo                
+	        		IntroFrame.dispose();
+	            	new StartPage();        
 	            }
 	        });
 	        //set up help button       

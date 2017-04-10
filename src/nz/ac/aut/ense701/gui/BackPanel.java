@@ -11,6 +11,7 @@ public class BackPanel extends JPanel {
         ImageIcon icon,gif2,gif3,gif4,gif5,gif6;  
         Image img;
         JLabel JLgif2,JLgif3,JLgif4,JLgif5,JLgif6;
+
         public BackPanel() {  
             //read the image from the folder 
             icon=new ImageIcon(getClass().getResource("/images/background/introdutionBg.jpg"));
@@ -51,7 +52,14 @@ public class BackPanel extends JPanel {
             this.add(JLgif5);
             this.add(JLgif6);
             
-        }  
+        } 
+        
+        public BackPanel(String bgname){
+        	icon=new ImageIcon(getClass().getResource("/images/background/"+bgname+".png"));
+            img=icon.getImage();
+        }
+
+
         
         public void paintComponent(Graphics g) {  
             super.paintComponent(g);   
