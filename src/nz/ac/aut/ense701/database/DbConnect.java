@@ -1,4 +1,4 @@
-package nz.ac.aut.ense701.gui;
+package nz.ac.aut.ense701.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

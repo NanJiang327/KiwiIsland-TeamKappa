@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.*;
+
+import nz.ac.aut.ense701.database.DbConnect;
   
 public class RegisterPage{  
   
