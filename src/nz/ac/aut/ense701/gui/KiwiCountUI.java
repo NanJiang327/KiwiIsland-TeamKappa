@@ -1,4 +1,3 @@
-
 package nz.ac.aut.ense701.gui;
 
 import java.awt.Component;
@@ -91,7 +90,7 @@ public class KiwiCountUI
        //Add key listener to control the movement.
        this.addKeyListener(new KeyListener()
        {
-       @Override//¼ü±»°´ÏÂ  
+       @Override
        public void keyPressed(KeyEvent e) 
        {  
               switch(e.getKeyCode())  
@@ -108,6 +107,21 @@ public class KiwiCountUI
                   case KeyEvent.VK_RIGHT:  
                   	game.playerMove(MoveDirection.EAST);
                       break;  
+                  case KeyEvent.VK_F1:
+                	  game.lastSong();
+                	  break;
+                  case KeyEvent.VK_F2:
+                	  if(i==0){
+						game.getAudio1().stop();
+						 i=1;
+                	  }else{
+                		game.getAudio1().loop();;
+                		i=0;
+                	  }	  
+                	  break;
+                  case KeyEvent.VK_F3:
+                	  game.nextSong();
+                	  break;
               }  
                 
           }  
@@ -181,7 +195,7 @@ public class KiwiCountUI
         btnMoveEast.setEnabled( game.isPlayerMovePossible(MoveDirection.EAST));
         btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
         btnMoveWest.setEnabled( game.isPlayerMovePossible(MoveDirection.WEST));
-        bgmPanel();
+
     }
     
     /** This method is called from within the constructor to
@@ -742,58 +756,11 @@ public class KiwiCountUI
         }
     }
     
-    private void bgmPanel(){
-    	pnlBgm = new JPanel();
-    	pnlBgm.setLayout(null);
-    	ImageIcon next = new ImageIcon(getClass().getResource("/images/icon/Register.png"));
-    	ImageIcon last = new ImageIcon(getClass().getResource("/images/icon/Cancel.png"));
-    	ImageIcon pause = new ImageIcon(getClass().getResource("/images/icon/Cancel.png"));
-    	
-    	Last=new JButton();
-        Last.setIcon(last);
-        Last.setBounds(450, 660, 150, 50);
-        Last.addActionListener(new java.awt.event.ActionListener() {
-        	@Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	//close the register page
-
-            }
-        });
-        
-        Pause=new JButton();
-        Pause.setIcon(pause);
-        Pause.setBounds(450, 660, 150, 50);
-        Pause.addActionListener(new java.awt.event.ActionListener() {
-        	@Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	//close the register page
-
-            }
-        });
-        
-        Next=new JButton();
-        Next.setIcon(next);
-        Next.setBounds(450, 660, 150, 50);
-        Next.addActionListener(new java.awt.event.ActionListener() {
-        	@Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	//close the register page
-            }
-        });
-    	
-        pnlBgm.add(Last);
-        pnlBgm.add(Pause);
-        pnlBgm.add(Next);
-        
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
-    private javax.swing.JButton Last;
-    private javax.swing.JButton Next;
-    private javax.swing.JButton Pause;
     private javax.swing.JButton btnMoveEast;
     private javax.swing.JButton btnMoveNorth;
     private javax.swing.JButton btnMoveSouth;
@@ -803,13 +770,14 @@ public class KiwiCountUI
     private javax.swing.JLabel lblPredators;
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
-    private javax.swing.JPanel pnlIsland,pnlBgm;
+    private javax.swing.JPanel pnlIsland;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
+    private int i = 0;
 
     // End of variables declaration//GEN-END:variables
 
@@ -817,4 +785,3 @@ public class KiwiCountUI
 
     
 }
-

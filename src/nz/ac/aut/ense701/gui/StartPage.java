@@ -21,9 +21,9 @@ public class StartPage {
 	 private JRadioButton JRBSmall,JRBNormall,JRBBig, JRBBgm1,JRBBgm2,JRBBgm3,JRBCdv,JRBCmario,JRBCbm;
 	 private ButtonGroup bgGroup,bsGroup,charGroup;
 	 private JLabel bgLabel,boardsizeLabel,charcterLabel;
-	 private String gameBgm = "Relax";
+	 private String gameBgm = "1";
 	 
-	 public StartPage(String username){
+	 public StartPage(final String username){
 		 startFrame = new JFrame();
 		 startPanel = new BackPanel("StartBg");
 		 
@@ -125,7 +125,7 @@ public class StartPage {
 	      JRBBgm1.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				gameBgm = "Fight";
+				gameBgm = "1";
 			}	    	  
 	      });
 	
@@ -136,7 +136,7 @@ public class StartPage {
 	      JRBBgm2.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					gameBgm = "Happy";
+					gameBgm = "2";
 				}	    	  
 		      });
 	      
@@ -146,7 +146,7 @@ public class StartPage {
 	      JRBBgm3.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					gameBgm = "Relax";
+					gameBgm = "3";
 				}	    	  
 		      });
 	      

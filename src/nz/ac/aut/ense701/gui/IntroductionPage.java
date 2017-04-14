@@ -18,7 +18,7 @@ public class IntroductionPage {
 	    RegisterPage registerPage;
 	    ImageIcon startIcon,helpIcon, rankIcon, exitIcon,logoutIcon;
 	    
-	    public IntroductionPage(String username)  
+	    public IntroductionPage(final String username)  
 	    {  
 	    	
 	    	IntroFrame = new JFrame();

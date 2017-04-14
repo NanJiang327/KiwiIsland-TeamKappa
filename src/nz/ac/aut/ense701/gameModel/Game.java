@@ -65,13 +65,39 @@ public class Game
         notifyGameEventListeners();
     }
     
-    public void playBgm(String name){
-    	URL codebase = null;
-    	codebase = getClass().getResource("/Bgm/"+name+".wav");
-        AudioClip audio1=Applet.newAudioClip(codebase);
-	    audio1.loop();
-	    System.out.println("My clip is: " + audio1);
-	    
+    public void playBgm(String songNo){
+    	this.songNo = songNo;
+    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
+        audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();    
+    }
+    
+    public void nextSong(){
+    	audio1.stop();
+    	int i = Integer.parseInt(songNo);
+    	if(i<10){
+    		i++;
+    	}else{
+    		i=1;
+    	}
+    	songNo = String.valueOf(i);
+    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
+        audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();   
+    }
+    
+    public void lastSong(){
+    	audio1.stop();
+    	int i = Integer.parseInt(songNo);
+    	if(i>1){
+    		i--;
+    	}else{
+    		i=10;
+    	}
+    	songNo = String.valueOf(i);
+    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
+        audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();   
     }
 
     /***********************************************************************************************************************
@@ -855,18 +881,26 @@ public class Game
         }
     }    
 
-    
-    public String getBg() {
-		return bg;
+
+
+	public AudioClip getAudio1() {
+		return audio1;
 	}
 
 
-	public void setBg(String bg) {
-		if(bg==null){
-			bg = "AnimalBg";
-		}else{
-			this.bg = bg;
-		}
+	public void setAudio1(AudioClip audio1) {
+		this.audio1 = audio1;
+	}
+
+
+
+	public URL getCodebase() {
+		return codebase;
+	}
+
+
+	public void setCodebase(URL codebase) {
+		this.codebase = codebase;
 	}
 
 
@@ -874,11 +908,14 @@ public class Game
 	private Island island;
     private Player player;
     private String username,bg;
+    private String songNo;
+    private URL codebase;
     private GameState state;
     private int kiwiCount;
     private int totalPredators;
     private int totalKiwis;
     private int predatorsTrapped;
+    private AudioClip audio1;
     private Set<GameEventListener> eventListeners;
     
     private final double MIN_REQUIRED_CATCH = 0.8;
