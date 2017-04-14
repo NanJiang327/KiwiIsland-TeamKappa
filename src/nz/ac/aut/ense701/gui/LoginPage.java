@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,10 +50,14 @@ public class LoginPage{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
 					verify();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} catch(FileNotFoundException e)
+                {
+		            System.err.println("Unable to find data file");
+		        }
+		        catch(IOException e)
+		        {
+		            System.err.println("Problem encountered processing file.");
+		        }
                 if(success){
                 	LoginFrame.dispose();
                     new IntroductionPage(username);

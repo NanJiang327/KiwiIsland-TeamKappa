@@ -1,8 +1,13 @@
 package nz.ac.aut.ense701.gameModel;
 
+import sun.audio.*; 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
@@ -31,10 +36,12 @@ public class Game
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
-    public Game() 
+    public Game(String username,String bgm) 
     {   
         eventListeners = new HashSet<GameEventListener>();
-
+        this.username = username;
+        this.bg = bgm;
+        playBgm(bgm);
         createNewGame();
     }
     
@@ -56,6 +63,15 @@ public class Game
         loseMessage = "";
         playerMessage = "";
         notifyGameEventListeners();
+    }
+    
+    public void playBgm(String name){
+    	URL codebase = null;
+    	codebase = getClass().getResource("/Bgm/"+name+".wav");
+        AudioClip audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();
+	    System.out.println("My clip is: " + audio1);
+	    
     }
 
     /***********************************************************************************************************************
@@ -772,7 +788,7 @@ public class Game
      */
     private void setUpPlayer(Scanner input) 
     {
-        String playerName              = input.next();
+        String playerName              = this.username;
         int    playerPosRow            = input.nextInt();
         int    playerPosCol            = input.nextInt();
         double playerMaxStamina        = input.nextDouble();
@@ -839,9 +855,25 @@ public class Game
         }
     }    
 
+    
+    public String getBg() {
+		return bg;
+	}
 
-    private Island island;
+
+	public void setBg(String bg) {
+		if(bg==null){
+			bg = "AnimalBg";
+		}else{
+			this.bg = bg;
+		}
+	}
+
+
+
+	private Island island;
     private Player player;
+    private String username,bg;
     private GameState state;
     private int kiwiCount;
     private int totalPredators;

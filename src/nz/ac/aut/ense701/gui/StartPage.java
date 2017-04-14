@@ -18,10 +18,10 @@ public class StartPage {
 	 private JFrame startFrame;
 	 private BackPanel startPanel;
 	 private JButton JbStart,JbCancel;
-	 private JRadioButton JRBSmall,JRBNormall,JRBBig, JRBBgAnimal,JRBBgFruit,JRBBgNature,JRBBgMinions,JRBCdv,JRBCmario,JRBCbm;
+	 private JRadioButton JRBSmall,JRBNormall,JRBBig, JRBBgm1,JRBBgm2,JRBBgm3,JRBCdv,JRBCmario,JRBCbm;
 	 private ButtonGroup bgGroup,bsGroup,charGroup;
 	 private JLabel bgLabel,boardsizeLabel,charcterLabel;
-	 private String gameBG = "Animal";
+	 private String gameBgm = "Relax";
 	 
 	 public StartPage(String username){
 		 startFrame = new JFrame();
@@ -44,7 +44,7 @@ public class StartPage {
 	     charcterLabel.setFont(new Font("Dialog",1,20));
 	     charcterLabel.setBounds(0,380,1036,25);
 
-	     bgLabel =new JLabel("Choose the background.",JLabel.CENTER);
+	     bgLabel =new JLabel("Choose the background music.",JLabel.CENTER);
 	     bgLabel.setFont(new Font("Dialog",1,20));
 	     bgLabel.setBounds(0,200,1036,25);
 	     
@@ -56,8 +56,8 @@ public class StartPage {
 	     @Override
          public void actionPerformed(java.awt.event.ActionEvent evt) {
 	    	// create the game object
-	    	 startFrame.dispose();
-	         final Game game = new Game();
+	    	 //startFrame.dispose();
+	         final Game game = new Game(username,gameBgm);
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
 	         gui.requestFocus();
@@ -119,48 +119,39 @@ public class StartPage {
 	      });
 	      
 	      //set background radio buttons
-	      JRBBgAnimal = new JRadioButton("Animal");
-	      JRBBgAnimal.setBounds(475,230,90,35);
-	      JRBBgAnimal.setOpaque(false);
-	      JRBBgAnimal.addActionListener(new ActionListener(){
+	      JRBBgm1 = new JRadioButton("Fight");
+	      JRBBgm1.setBounds(475,230,90,35);
+	      JRBBgm1.setOpaque(false);
+	      JRBBgm1.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				gameBG = "Animal";
+				gameBgm = "Fight";
 			}	    	  
 	      });
+	
 	      
-	      JRBBgFruit = new JRadioButton("Fruit");
-	      JRBBgFruit.setBounds(475,265,90,35);
-	      JRBBgFruit.setOpaque(false);
-	      JRBBgFruit.addActionListener(new ActionListener(){
+	      JRBBgm2 = new JRadioButton("Happy");
+	      JRBBgm2.setBounds(475,265,90,35);
+	      JRBBgm2.setOpaque(false);
+	      JRBBgm2.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					gameBG = "Fruit";
+					gameBgm = "Happy";
 				}	    	  
 		      });
 	      
-	      JRBBgNature = new JRadioButton("Nature");
-	      JRBBgNature.setBounds(475,300,90,35);
-	      JRBBgNature.setOpaque(false);
-	      JRBBgNature.addActionListener(new ActionListener(){
+	      JRBBgm3 = new JRadioButton("Relax");
+	      JRBBgm3.setBounds(475,300,90,35);
+	      JRBBgm3.setOpaque(false);
+	      JRBBgm3.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					gameBG = "Nature";
-				}	    	  
-		      });
-	      
-	      JRBBgMinions = new JRadioButton("Minions");
-	      JRBBgMinions.setBounds(475,335,90,35);
-	      JRBBgMinions.setOpaque(false);
-	      JRBBgMinions.addActionListener(new ActionListener(){
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					gameBG = "Minions";
+					gameBgm = "Relax";
 				}	    	  
 		      });
 	      
 	      //set up character buttons
-	      JRBCdv = new JRadioButton("Death Vader");
+	      JRBCdv = new JRadioButton("Male");
 	      JRBCdv.setBounds(550,400,100,50);
 	      JRBCdv.setOpaque(false);
 	      JRBCdv.addActionListener(new ActionListener(){
@@ -170,7 +161,7 @@ public class StartPage {
 			}	    	  
 	      });
 	      
-	      JRBCmario = new JRadioButton("Mario");
+	      JRBCmario = new JRadioButton("Female");
 	      JRBCmario.setBounds(550,450,100,50);
 	      JRBCmario.setOpaque(false);
 	      JRBCmario.addActionListener(new ActionListener(){
@@ -180,7 +171,7 @@ public class StartPage {
 			}	    	  
 	      });
 	      
-	      JRBCbm = new JRadioButton("Bat man");
+	      JRBCbm = new JRadioButton("Animal");
 	      JRBCbm.setBounds(550,500,100,50);
 	      JRBCbm.setOpaque(false);
 	      JRBCbm.addActionListener(new ActionListener(){
@@ -196,10 +187,9 @@ public class StartPage {
 	      bsGroup.add(JRBBig);
 	      
 	      bgGroup = new ButtonGroup();
-	      bgGroup.add(JRBBgAnimal);
-	      bgGroup.add(JRBBgFruit);
-	      bgGroup.add(JRBBgNature);
-	      bgGroup.add(JRBBgMinions);
+	      bgGroup.add(JRBBgm1);
+	      bgGroup.add(JRBBgm2);
+	      bgGroup.add(JRBBgm3);
 	      
 	      charGroup = new ButtonGroup();
 	      charGroup.add(JRBCdv);
@@ -212,10 +202,9 @@ public class StartPage {
 	     startPanel.add(JRBNormall);
 	     startPanel.add(JRBBig);
 	     startPanel.add(bgLabel);
-	     startPanel.add(JRBBgAnimal);
-	     startPanel.add(JRBBgFruit);
-	     startPanel.add(JRBBgNature);
-	     startPanel.add(JRBBgMinions);
+	     startPanel.add(JRBBgm1);
+	     startPanel.add(JRBBgm2);
+	     startPanel.add(JRBBgm3);
 	     startPanel.add(charcterLabel);
 	     startPanel.add(JRBCdv);
 	     startPanel.add(JRBCmario);
@@ -232,11 +221,4 @@ public class StartPage {
 		 
 	 }
 
-	public String getGameBG() {
-		return gameBG;
-	}
-
-	public void setGameBG(String gameBG) {
-		this.gameBG = gameBG;
-	}
 }

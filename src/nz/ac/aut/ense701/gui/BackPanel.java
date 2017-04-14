@@ -55,7 +55,7 @@ public class BackPanel extends JPanel {
         } 
         
         public BackPanel(String bgname){
-        	icon=new ImageIcon(getClass().getResource("/images/background/"+bgname+".png"));
+        	icon=new ImageIcon(getClass().getResource("/images/background/"+bgname+".jpg"));
             img=icon.getImage();
         }
 
