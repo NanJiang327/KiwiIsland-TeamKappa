@@ -23,7 +23,7 @@ public class StartPage {
 	 private JLabel bgLabel,boardsizeLabel,charcterLabel;
 	 private String gameBG = "Animal";
 	 
-	 public StartPage(){
+	 public StartPage(String username){
 		 startFrame = new JFrame();
 		 startPanel = new BackPanel("StartBg");
 		 
@@ -83,7 +83,7 @@ public class StartPage {
 	      @Override
 	      public void actionPerformed(java.awt.event.ActionEvent evt) {
 	    	  	startFrame.dispose();
-	    	  	new IntroductionPage();
+	    	  	new IntroductionPage(username);;
 	          }
 	      });
 	      

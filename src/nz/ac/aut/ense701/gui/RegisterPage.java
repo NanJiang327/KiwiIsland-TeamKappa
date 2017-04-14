@@ -1,17 +1,20 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.*;
 
-import nz.ac.aut.ense701.database.DbConnect;
+import nz.ac.aut.ense701.userinfo.Userinfo;
+
+
   
 public class RegisterPage{  
   
 	private BackPanel registerPanel;
-	private DbConnect dbc;
+	private Userinfo user;
     private JButton JbRegister,JbCancel;  
     private JTextField JTUsername;  
     private JPasswordField JPwd,JPwdCheck;  
@@ -24,7 +27,7 @@ public class RegisterPage{
 
     public RegisterPage()  
     {  
-    	dbc = new DbConnect();
+    	user = new Userinfo();
     	registerFrame = new JFrame();
     	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
@@ -39,7 +42,12 @@ public class RegisterPage{
         JbRegister.addActionListener(new java.awt.event.ActionListener() {
         	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	db();
+            	try {
+					db();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	if(success){
             		registerFrame.dispose();
             		new LoginPage();
@@ -115,7 +123,7 @@ public class RegisterPage{
     /*
      * This method is used to check the input format and insert data to the database
      */
-    public void db(){
+    public void db() throws IOException{
     	//the username format
     	usernameFormat = "[a-zA-Z0-9_]{5,15}";
     	//the password format.
@@ -143,12 +151,11 @@ public class RegisterPage{
     		if(pwd.equals(pwdCheck))
     		{
     			if(pwdMatcher.matches()&&pwdCheckMatcher.matches()){
-    				dbc.checkDB(username);
-    				if(!dbc.isFound()){
-    					dbc.insertToDb(username,pwd);
+    				user.checkUser(username);
+    				if(!user.isFound()){
+    					user.insertToFile(username, pwd);
     					success = true;
     					JOptionPane.showMessageDialog(null, "Register success!\n Username:"+username+"\n Password:"+pwd+"\nDon't forget your username and password!");
-    	              
     				}
     				else
     				{

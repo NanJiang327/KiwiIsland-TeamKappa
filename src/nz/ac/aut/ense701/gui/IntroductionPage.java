@@ -18,7 +18,7 @@ public class IntroductionPage {
 	    RegisterPage registerPage;
 	    ImageIcon startIcon,helpIcon, rankIcon, exitIcon,logoutIcon;
 	    
-	    public IntroductionPage()  
+	    public IntroductionPage(String username)  
 	    {  
 	    	
 	    	IntroFrame = new JFrame();
@@ -40,7 +40,7 @@ public class IntroductionPage {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	        		IntroFrame.dispose();
-	            	new StartPage();        
+	            	new StartPage(username);
 	            }
 	        });
 	        //set up help button       
@@ -50,7 +50,8 @@ public class IntroductionPage {
 	        JbHelp.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	        		//Todo
+	        		//TODO
+	        		JOptionPane.showMessageDialog(null, "TODO next iteration");
 	            }
 	        });
 	        //set up the rank button
@@ -60,7 +61,8 @@ public class IntroductionPage {
 	        JbRank.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                //Todo
+	                //TODO
+	        		JOptionPane.showMessageDialog(null, "TODO next iteration");
 	            }
 	        });
 	        //set up the logout button

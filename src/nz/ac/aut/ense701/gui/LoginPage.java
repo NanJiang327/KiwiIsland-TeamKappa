@@ -1,16 +1,26 @@
 package nz.ac.aut.ense701.gui;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.*;
 
-import nz.ac.aut.ense701.database.DbConnect;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import nz.ac.aut.ense701.userinfo.Userinfo;
+
   
 public class LoginPage{  
   
 	private BackPanel loginPanel;
-	private DbConnect dbc;
+	private Userinfo user;
 	private JFrame LoginFrame;
     private JButton JbLogin,JbRegister;  
     private JTextField JTUsername;  
@@ -22,7 +32,7 @@ public class LoginPage{
 
     public LoginPage()  
     {  
-    	dbc = new DbConnect();
+    	user = new Userinfo();
     	LoginFrame = new JFrame();
     	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
@@ -37,10 +47,15 @@ public class LoginPage{
         JbLogin.addActionListener(new java.awt.event.ActionListener() {
         	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verify();
+                try {
+					verify();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 if(success){
                 	LoginFrame.dispose();
-                	IntroductionPage introPage = new IntroductionPage();
+                    new IntroductionPage(username);
                 	
                 }
             }
@@ -98,7 +113,7 @@ public class LoginPage{
         LoginFrame.setVisible(true);  
     } 
     
-    public void verify(){
+    public void verify() throws IOException{
     	//the username format
     	usernameFormat = "[a-zA-Z0-9_]{5,15}";
     	//the password format.
@@ -119,10 +134,10 @@ public class LoginPage{
     	{
     		if(pwdMatcher.matches())
     		{
-    				dbc.verify(username, pwd);
-    				if(dbc.isLoginFound())
+    				user.verify(username, pwd);
+    				if(user.isLoginFound())
     				{
-    					if(dbc.isVerified())
+    					if(user.isVerified())
     					{
     						success = true;
     						JOptionPane.showMessageDialog(null, "Welcome back! User "+username+"");
