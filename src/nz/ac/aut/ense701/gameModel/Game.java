@@ -1,8 +1,13 @@
 package nz.ac.aut.ense701.gameModel;
 
+import sun.audio.*; 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
@@ -31,10 +36,12 @@ public class Game
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
-    public Game() 
+    public Game(String username,String bgm) 
     {   
         eventListeners = new HashSet<GameEventListener>();
-
+        this.username = username;
+        this.bg = bgm;
+        playBgm(bgm);
         createNewGame();
     }
     
@@ -56,6 +63,41 @@ public class Game
         loseMessage = "";
         playerMessage = "";
         notifyGameEventListeners();
+    }
+    
+    public void playBgm(String songNo){
+    	this.songNo = songNo;
+    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
+        audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();    
+    }
+    
+    public void nextSong(){
+    	audio1.stop();
+    	int i = Integer.parseInt(songNo);
+    	if(i<10){
+    		i++;
+    	}else{
+    		i=1;
+    	}
+    	songNo = String.valueOf(i);
+    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
+        audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();   
+    }
+    
+    public void lastSong(){
+    	audio1.stop();
+    	int i = Integer.parseInt(songNo);
+    	if(i>1){
+    		i--;
+    	}else{
+    		i=10;
+    	}
+    	songNo = String.valueOf(i);
+    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
+        audio1=Applet.newAudioClip(codebase);
+	    audio1.loop();   
     }
 
     /***********************************************************************************************************************
@@ -772,7 +814,7 @@ public class Game
      */
     private void setUpPlayer(Scanner input) 
     {
-        String playerName              = input.next();
+        String playerName              = this.username;
         int    playerPosRow            = input.nextInt();
         int    playerPosCol            = input.nextInt();
         double playerMaxStamina        = input.nextDouble();
@@ -840,13 +882,40 @@ public class Game
     }    
 
 
-    private Island island;
+
+	public AudioClip getAudio1() {
+		return audio1;
+	}
+
+
+	public void setAudio1(AudioClip audio1) {
+		this.audio1 = audio1;
+	}
+
+
+
+	public URL getCodebase() {
+		return codebase;
+	}
+
+
+	public void setCodebase(URL codebase) {
+		this.codebase = codebase;
+	}
+
+
+
+	private Island island;
     private Player player;
+    private String username,bg;
+    private String songNo;
+    private URL codebase;
     private GameState state;
     private int kiwiCount;
     private int totalPredators;
     private int totalKiwis;
     private int predatorsTrapped;
+    private AudioClip audio1;
     private Set<GameEventListener> eventListeners;
     
     private final double MIN_REQUIRED_CATCH = 0.8;

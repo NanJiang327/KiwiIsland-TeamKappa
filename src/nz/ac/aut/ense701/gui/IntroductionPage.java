@@ -5,22 +5,20 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class IntroductionPage {
 
 	    BackPanel IntroPanel;
 		JFrame IntroFrame;
-	    JButton JbLogin,JbRegister;    
+	    JButton JbStart,JbHelp,JbRank,JbExit, JbLogout;    
 	    JPanel introPanel;
 	    LoginPage loginPage;
 	    RegisterPage registerPage;
+	    ImageIcon startIcon,helpIcon, rankIcon, exitIcon,logoutIcon;
 	    
-	    public static void main(String[] args) {  
-	        // TODO Auto-generated method stub  
-	        new IntroductionPage();  
-	    }  
-	    public IntroductionPage()  
+	    public IntroductionPage(final String username)  
 	    {  
 	    	
 	    	IntroFrame = new JFrame();
@@ -29,29 +27,64 @@ public class IntroductionPage {
 	    	IntroFrame.setLocation(w, h);
 	        //Components 
 	    	//Read the images
-	    	ImageIcon loginIcon = new ImageIcon(getClass().getResource("/images/icon/Login.png"));
-	    	ImageIcon RegisterIcon = new ImageIcon(getClass().getResource("/images/icon/Register.png"));
-	    	//set up login button
-	        JbLogin=new JButton();
-	        JbLogin.setBounds(450, 600, 150, 50);
-	        JbLogin.setIcon(loginIcon);
-	        JbLogin.addActionListener(new java.awt.event.ActionListener() {
+	    	startIcon = new ImageIcon(getClass().getResource("/images/icon/start.png"));
+	    	helpIcon = new ImageIcon(getClass().getResource("/images/icon/Help.png"));
+	    	rankIcon = new ImageIcon(getClass().getResource("/images/icon/Rank.png"));
+	    	exitIcon = new ImageIcon(getClass().getResource("/images/icon/exit.png"));
+	    	logoutIcon = new ImageIcon(getClass().getResource("/images/icon/logout.png"));
+	    	//set up start button
+	        JbStart=new JButton();
+	        JbStart.setBounds(450, 420, 150, 50);
+	        JbStart.setIcon(startIcon);
+	        JbStart.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	            	loginPage = new LoginPage();
-	            	IntroFrame.dispose();
-	                
+	        		IntroFrame.dispose();
+	            	new StartPage(username);
 	            }
 	        });
-	        //set up register button       
-	        JbRegister = new JButton();
-	        JbRegister.setBounds(450, 660, 150, 50);
-	        JbRegister.setIcon(RegisterIcon);
-	        JbRegister.addActionListener(new java.awt.event.ActionListener() {
+	        //set up help button       
+	        JbHelp = new JButton();
+	        JbHelp.setBounds(450, 480, 150, 50);
+	        JbHelp.setIcon(helpIcon);
+	        JbHelp.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                registerPage = new RegisterPage();
-	                IntroFrame.dispose();
+	        		//TODO
+	        		JOptionPane.showMessageDialog(null, "TODO next iteration");
+	            }
+	        });
+	        //set up the rank button
+	        JbRank=new JButton();
+	        JbRank.setBounds(450, 540, 150, 50);
+	        JbRank.setIcon(rankIcon);
+	        JbRank.addActionListener(new java.awt.event.ActionListener() {
+	        	@Override
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                //TODO
+	        		JOptionPane.showMessageDialog(null, "TODO next iteration");
+	            }
+	        });
+	        //set up the logout button
+	        JbLogout=new JButton();
+	        JbLogout.setBounds(450, 600, 150, 50);
+	        JbLogout.setIcon(logoutIcon);
+	        JbLogout.addActionListener(new java.awt.event.ActionListener() {
+	        	@Override
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	        		IntroFrame.dispose();
+	        		new LoginPage();            
+	            }
+	        });
+	        
+	        //set up the exit button
+	        JbExit=new JButton();
+	        JbExit.setBounds(450, 660, 150, 50);
+	        JbExit.setIcon(exitIcon);
+	        JbExit.addActionListener(new java.awt.event.ActionListener() {
+	        	@Override
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	        		System.exit(0);        
 	            }
 	        });
 	        
@@ -59,9 +92,12 @@ public class IntroductionPage {
 	        introPanel = new BackPanel();
 	        introPanel.setLayout(null);
 	        //add buttons into the panel
-	        introPanel.add(JbLogin);
-	        introPanel.add(JbRegister);
-	        
+	        introPanel.add(JbStart);
+	        introPanel.add(JbHelp);
+	        introPanel.add(JbRank);
+	        introPanel.add(JbLogout);
+	        introPanel.add(JbExit);
+	       
 	        IntroFrame.add(introPanel);  
 
 	        //Set frame size, title.

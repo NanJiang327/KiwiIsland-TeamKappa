@@ -1,15 +1,21 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.*;
+
+import nz.ac.aut.ense701.userinfo.Userinfo;
+
+
   
 public class RegisterPage{  
   
 	private BackPanel registerPanel;
-	private DbConnect dbc;
+	private Userinfo user;
     private JButton JbRegister,JbCancel;  
     private JTextField JTUsername;  
     private JPasswordField JPwd,JPwdCheck;  
@@ -22,7 +28,7 @@ public class RegisterPage{
 
     public RegisterPage()  
     {  
-    	dbc = new DbConnect();
+    	user = new Userinfo();
     	registerFrame = new JFrame();
     	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
@@ -37,10 +43,20 @@ public class RegisterPage{
         JbRegister.addActionListener(new java.awt.event.ActionListener() {
         	@Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	db();
+            	try {
+					db();
+            	}
+					catch(FileNotFoundException e)
+			        {
+			            System.err.println("Unable to find data file");
+			        }
+			        catch(IOException e)
+			        {
+			            System.err.println("Problem encountered processing file.");
+			        }
             	if(success){
             		registerFrame.dispose();
-            		new IntroductionPage();
+            		new LoginPage();
             	}
             }
         });
@@ -53,7 +69,7 @@ public class RegisterPage{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	//close the register page
                 registerFrame.dispose();
-                new IntroductionPage();
+                new LoginPage();
 
             }
         });
@@ -113,7 +129,7 @@ public class RegisterPage{
     /*
      * This method is used to check the input format and insert data to the database
      */
-    public void db(){
+    public void db() throws IOException{
     	//the username format
     	usernameFormat = "[a-zA-Z0-9_]{5,15}";
     	//the password format.
@@ -124,7 +140,7 @@ public class RegisterPage{
     	pwd = String.valueOf(pass);
     	
     	pwdCheck = JPwdCheck.getPassword().toString();
-    	char[] passChcek= JPwd.getPassword();
+    	char[] passChcek= JPwdCheck.getPassword();
     	pwdCheck = String.valueOf(passChcek);
     	
     	//Compile the pattern
@@ -141,12 +157,11 @@ public class RegisterPage{
     		if(pwd.equals(pwdCheck))
     		{
     			if(pwdMatcher.matches()&&pwdCheckMatcher.matches()){
-    				dbc.checkDB(username);
-    				if(!dbc.isFound()){
-    					dbc.insertToDb(username,pwd);
+    				user.checkUser(username);
+    				if(!user.isFound()){
+    					user.insertToFile(username, pwd);
     					success = true;
-    					JOptionPane.showMessageDialog(null, "Success!");
-    	              
+    					JOptionPane.showMessageDialog(null, "Register success!\n Username:"+username+"\n Password:"+pwd+"\nDon't forget your username and password!");
     				}
     				else
     				{
@@ -154,6 +169,7 @@ public class RegisterPage{
     		    		JTUsername.setText("");
     		    		JPwd.setText("");
     					JPwdCheck.setText("");
+    					JTUsername.requestFocus();
     				}
     				
     				
@@ -161,7 +177,8 @@ public class RegisterPage{
     				JOptionPane.showMessageDialog(null, "The password can only have numbers and letters, the length of password is between 5 to 15.","Error", JOptionPane.ERROR_MESSAGE);
     				JTUsername.setText("");
     	    		JPwd.setText("");
-    				JPwdCheck.setText("");  				
+    				JPwdCheck.setText("");
+    				JTUsername.requestFocus();
     			}
     		}
     		else
@@ -170,6 +187,7 @@ public class RegisterPage{
     			JTUsername.setText("");
         		JPwd.setText("");
     			JPwdCheck.setText("");
+    			JTUsername.requestFocus();
     		} 		
     	}
     	else
@@ -178,6 +196,7 @@ public class RegisterPage{
     		JTUsername.setText("");
     		JPwd.setText("");
 			JPwdCheck.setText("");
+			JTUsername.requestFocus();
     	}
     
 
