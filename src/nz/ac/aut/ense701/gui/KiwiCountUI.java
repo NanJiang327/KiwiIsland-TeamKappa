@@ -2,15 +2,12 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Component;
 import java.awt.GridLayout;
-<<<<<<< HEAD
-=======
 import java.awt.Toolkit;
 import java.awt.event.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
->>>>>>> Nan
 import javax.swing.JOptionPane;
 import java.awt.event.*;
 import javax.swing.JPanel;
@@ -95,11 +92,7 @@ public class KiwiCountUI
        //Add key listener to control the movement.
        this.addKeyListener(new KeyListener()
        {
-<<<<<<< HEAD
-       @Override//
-=======
-       @Override
->>>>>>> Nan
+
        public void keyPressed(KeyEvent e) 
        {  
               switch(e.getKeyCode())  
@@ -791,10 +784,5 @@ public class KiwiCountUI
     // End of variables declaration//GEN-END:variables
 
     private Game game;
-<<<<<<< HEAD
-}
-=======
+ }
 
-    
-}
->>>>>>> Nan

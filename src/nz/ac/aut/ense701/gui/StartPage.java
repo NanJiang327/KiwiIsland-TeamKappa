@@ -83,7 +83,7 @@ public class StartPage {
 	      @Override
 	      public void actionPerformed(java.awt.event.ActionEvent evt) {
 	    	  	startFrame.dispose();
-	    	  	new IntroductionPage(username);;
+	    	  	new MainPage(username);;
 	          }
 	      });
 	      

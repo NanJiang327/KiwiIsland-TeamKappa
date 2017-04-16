@@ -8,17 +8,17 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class IntroductionPage {
+public class MainPage {
 
 	    BackPanel IntroPanel;
 		JFrame IntroFrame;
-	    JButton JbStart,JbHelp,JbRank,JbExit, JbLogout;    
+	    JButton JbStart,JbInstruction,JbRank,JbExit, JbLogout;    
 	    JPanel introPanel;
 	    LoginPage loginPage;
 	    RegisterPage registerPage;
-	    ImageIcon startIcon,helpIcon, rankIcon, exitIcon,logoutIcon;
+	    ImageIcon startIcon,InstructionIcon, rankIcon, exitIcon,logoutIcon;
 	    
-	    public IntroductionPage(final String username)  
+	    public MainPage(final String username)  
 	    {  
 	    	
 	    	IntroFrame = new JFrame();
@@ -28,7 +28,7 @@ public class IntroductionPage {
 	        //Components 
 	    	//Read the images
 	    	startIcon = new ImageIcon(getClass().getResource("/images/icon/start.png"));
-	    	helpIcon = new ImageIcon(getClass().getResource("/images/icon/Help.png"));
+	    	InstructionIcon = new ImageIcon(getClass().getResource("/images/icon/Instruction.png"));
 	    	rankIcon = new ImageIcon(getClass().getResource("/images/icon/Rank.png"));
 	    	exitIcon = new ImageIcon(getClass().getResource("/images/icon/exit.png"));
 	    	logoutIcon = new ImageIcon(getClass().getResource("/images/icon/logout.png"));
@@ -44,10 +44,10 @@ public class IntroductionPage {
 	            }
 	        });
 	        //set up help button       
-	        JbHelp = new JButton();
-	        JbHelp.setBounds(450, 480, 150, 50);
-	        JbHelp.setIcon(helpIcon);
-	        JbHelp.addActionListener(new java.awt.event.ActionListener() {
+	        JbInstruction = new JButton();
+	        JbInstruction.setBounds(450, 480, 150, 50);
+	        JbInstruction.setIcon(InstructionIcon);
+	        JbInstruction.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	        		//TODO
@@ -93,7 +93,7 @@ public class IntroductionPage {
 	        introPanel.setLayout(null);
 	        //add buttons into the panel
 	        introPanel.add(JbStart);
-	        introPanel.add(JbHelp);
+	        introPanel.add(JbInstruction);
 	        introPanel.add(JbRank);
 	        introPanel.add(JbLogout);
 	        introPanel.add(JbExit);

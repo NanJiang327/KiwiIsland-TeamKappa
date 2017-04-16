@@ -60,7 +60,7 @@ public class LoginPage{
 		        }
                 if(success){
                 	LoginFrame.dispose();
-                    new IntroductionPage(username);
+                    new MainPage(username);
                 	
                 }
             }
