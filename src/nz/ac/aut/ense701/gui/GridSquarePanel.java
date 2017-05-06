@@ -3,6 +3,9 @@ package nz.ac.aut.ense701.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
@@ -19,6 +22,13 @@ import nz.ac.aut.ense701.gameModel.Terrain;
 
 public class GridSquarePanel extends javax.swing.JPanel 
 {
+    private Image backgroundImage;
+    
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        g.drawImage(bgImage, 0, 0, null);
+//    }
     /** 
      * Creates new GridSquarePanel.
      * @param game the game to represent
@@ -70,6 +80,13 @@ public class GridSquarePanel extends javax.swing.JPanel
             lblText.setBackground(color);
             // set border colour according to 
             // whether the player is in the grid square or not
+            if(game.hasPlayer(row,column)) {
+                setBackground();
+            } else {
+                clearBackground();
+                setBorder(normalBorder);
+            }
+      
             setBorder(game.hasPlayer(row,column) ? activeBorder : normalBorder);
         }
         else
@@ -77,6 +94,28 @@ public class GridSquarePanel extends javax.swing.JPanel
             lblText.setText("");
             lblText.setBackground(null);
             setBorder(normalBorder);
+        }
+    }
+    
+    
+    public void clearBackground() {
+        setImage("empty.png");
+    }
+    public void setBackground() {
+        setImage(game.getGameCharacter());     
+    }
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.drawImage(backgroundImage,0,0,null);
+    }
+    public void setImage(String fileName) {
+        String workingDirectory = System.getProperty("user.dir");
+        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "icon" + File.separator);
+        try {
+            backgroundImage = ImageIO.read(new File(basePath + fileName));
+        } catch(Exception ex) {
+            System.out.println("Couldn't find file");
         }
     }
     
