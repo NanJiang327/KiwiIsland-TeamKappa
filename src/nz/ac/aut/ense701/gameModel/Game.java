@@ -36,11 +36,12 @@ public class Game
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
-    public Game(String username,String bgm) 
+    public Game(String username,String bgm,String gameCharacter) 
     {   
         eventListeners = new HashSet<GameEventListener>();
         this.username = username;
         this.bg = bgm;
+        this.gameCharacter = gameCharacter;
         playBgm(bgm);
         createNewGame();
     }
@@ -902,12 +903,17 @@ public class Game
 	public void setCodebase(URL codebase) {
 		this.codebase = codebase;
 	}
+        
+        public String getGameCharacter() {
+            return this.gameCharacter;
+        }
 
 
 
 	private Island island;
     private Player player;
     private String username,bg;
+    private String gameCharacter;
     private String songNo;
     private URL codebase;
     private GameState state;
