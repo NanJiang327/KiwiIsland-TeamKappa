@@ -1,47 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0fa4555-7763-4ac1-aa75-78d98eb23cee" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/.netbeans_automatic_build" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/.netbeans_update_resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/1.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/10.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/2.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/3.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/4.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/5.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/6.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/7.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/8.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/Bgm/9.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/background/StartBg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/background/introdutionBg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/gifs/gif2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/gifs/gif3.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/gifs/gif4.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/gifs/gif5.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/gifs/gif6.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/Cancel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/Instruction.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/Login.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/Rank.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/Register.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/animal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/archer.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/empty.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/exit.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/food.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/hole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/kiwi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/logout.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/start.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/trap.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/warrior.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/images/icon/wizard.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/nz/ac/aut/ense701/gui/GridSquarePanel.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/nz/ac/aut/ense701/gui/KiwiCountUI.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/nz/ac/aut/ense701/gui/TestingJpanel.form" />
-    </list>
+    <list default="true" id="b0fa4555-7763-4ac1-aa75-78d98eb23cee" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -76,7 +36,7 @@
       <file leaf-file-name="StartPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/gui/StartPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2499">
+            <state relative-caret-position="2924">
               <caret line="198" column="10" lean-forward="false" selection-start-line="198" selection-start-column="10" selection-end-line="198" selection-end-column="10" />
               <folding />
             </state>
@@ -151,9 +111,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -304,6 +262,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -815,11 +775,12 @@
       <workItem from="1494489696698" duration="1642000" />
       <workItem from="1494495918743" duration="3000" />
       <workItem from="1494495989987" duration="2000" />
+      <workItem from="1494496072514" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1647000" />
+    <option name="totallyTimeSpent" value="1651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -870,6 +831,48 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nz/ac/aut/ense701/gameModel/GameTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="54" lean-forward="false" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/gui/StartPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2924">
+          <caret line="198" column="10" lean-forward="false" selection-start-line="198" selection-start-column="10" selection-end-line="198" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/gameModel/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="229" column="23" lean-forward="false" selection-start-line="229" selection-start-column="23" selection-end-line="229" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/gui/GridSquarePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="75" column="55" lean-forward="false" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
+          <folding>
+            <element signature="e#4877#4966#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -979,7 +982,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/nz/ac/aut/ense701/gui/StartPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2499">
+        <state relative-caret-position="2924">
           <caret line="198" column="10" lean-forward="false" selection-start-line="198" selection-start-column="10" selection-end-line="198" selection-end-column="10" />
           <folding />
         </state>
