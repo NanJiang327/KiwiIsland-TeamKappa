@@ -22,6 +22,7 @@ public class StartPage {
 	 private ButtonGroup bgGroup,bsGroup,charGroup;
 	 private JLabel bgLabel,boardsizeLabel,charcterLabel;
 	 private String gameBgm = "1";
+         private String gameCharacter = "warrior.png"; //defaults to warrior.png
 	 
 	 public StartPage(final String username){
 		 startFrame = new JFrame();
@@ -57,7 +58,7 @@ public class StartPage {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
 	    	// create the game object
 	    	 //startFrame.dispose();
-	         final Game game = new Game(username,gameBgm);
+	         final Game game = new Game(username,gameBgm,gameCharacter);
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
 	         gui.requestFocus();
@@ -151,33 +152,33 @@ public class StartPage {
 		      });
 	      
 	      //set up character buttons
-	      JRBCdv = new JRadioButton("Male");
+	      JRBCdv = new JRadioButton("Warrior");
 	      JRBCdv.setBounds(550,400,100,50);
 	      JRBCdv.setOpaque(false);
 	      JRBCdv.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+                            gameCharacter = "warrior.png";
 			}	    	  
 	      });
 	      
-	      JRBCmario = new JRadioButton("Female");
+	      JRBCmario = new JRadioButton("Archer");
 	      JRBCmario.setBounds(550,450,100,50);
 	      JRBCmario.setOpaque(false);
 	      JRBCmario.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+                            gameCharacter = "archer.png";
 			}	    	  
 	      });
 	      
-	      JRBCbm = new JRadioButton("Animal");
+	      JRBCbm = new JRadioButton("Wizard");
 	      JRBCbm.setBounds(550,500,100,50);
 	      JRBCbm.setOpaque(false);
 	      JRBCbm.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+                            gameCharacter = "wizard.png";
 			}	    	  
 	      });
 	      
