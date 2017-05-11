@@ -67,8 +67,9 @@ public class GridSquarePanel extends javax.swing.JPanel
         
         if ( squareExplored || squareVisible )
         {
+            String occupantSymbol = game.getOccupantStringRepresentation(row, column);
             // Set the text of the JLabel according to the occupant
-            lblText.setText(game.getOccupantStringRepresentation(row,column));
+            lblText.setText(occupantSymbol);
             // Set the colour. 
             if ( squareVisible && !squareExplored ) 
             {
@@ -78,14 +79,22 @@ public class GridSquarePanel extends javax.swing.JPanel
                                   Math.min(255, color.getBlue()  + 128));
             }
             lblText.setBackground(color);
-            // set border colour according to 
-            // whether the player is in the grid square or not
+
+
             if(game.hasPlayer(row,column)) {
                 setBackground();
             } else {
                 clearBackground();
                 setBorder(normalBorder);
             }
+            
+            //switch statements can't be used on strings in this version of JDK
+            //so IF statements.
+            if(occupantSymbol.contains("K")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/kiwi.png")));}
+            if(occupantSymbol.contains("F") || occupantSymbol.contains("P")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/animal.png")));}
+            if(occupantSymbol.contains("H")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/hole.png")));}
+            if(occupantSymbol.contains("T")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/trap.png")));}
+            if(occupantSymbol.contains("E")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/food.png")));}
       
             setBorder(game.hasPlayer(row,column) ? activeBorder : normalBorder);
         }
@@ -104,6 +113,7 @@ public class GridSquarePanel extends javax.swing.JPanel
     public void setBackground() {
         setImage(game.getGameCharacter());     
     }
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -135,7 +145,6 @@ public class GridSquarePanel extends javax.swing.JPanel
 
         lblText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblText.setText("content");
         lblText.setOpaque(true);
         add(lblText, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

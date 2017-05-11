@@ -63,14 +63,21 @@ public class KiwiCountUI
         // check for "game over" or "game won"
         if ( game.getState() == GameState.LOST )
         {
+            this.pnlIsland.removeAll();
+            this.pnlIsland.repaint();
+            this.pnlIsland.revalidate();
+            initIslandGrid();
             JOptionPane.showMessageDialog(
                     this, 
                     game.getLoseMessage(), "Game over!",
                     JOptionPane.INFORMATION_MESSAGE);
-            game.createNewGame();
+                     game.createNewGame();
         }
         else if ( game.getState() == GameState.WON )
         {
+            this.pnlIsland.removeAll();
+            this.pnlIsland.repaint();
+            this.pnlIsland.revalidate();
             JOptionPane.showMessageDialog(
                     this, 
                     game.getWinMessage(), "Well Done!",

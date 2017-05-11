@@ -22,7 +22,7 @@ public class StartPage {
 	 private ButtonGroup bgGroup,bsGroup,charGroup;
 	 private JLabel bgLabel,boardsizeLabel,charcterLabel;
 	 private String gameBgm = "1";
-         private String gameCharacter = "";
+         private String gameCharacter = "warrior.png"; //defaults to warrior.png
 	 
 	 public StartPage(final String username){
 		 startFrame = new JFrame();
