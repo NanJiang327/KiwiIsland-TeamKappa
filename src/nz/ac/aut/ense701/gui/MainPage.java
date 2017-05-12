@@ -50,8 +50,7 @@ public class MainPage {
 	        JbInstruction.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	        		//TODO
-	        		JOptionPane.showMessageDialog(null, "TODO next iteration");
+	        		new InstructionPanel();
 	            }
 	        });
 	        //set up the rank button

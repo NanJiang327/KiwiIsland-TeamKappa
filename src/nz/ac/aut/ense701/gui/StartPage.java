@@ -18,17 +18,18 @@ public class StartPage {
 	 private JFrame startFrame;
 	 private BackPanel startPanel;
 	 private JButton JbStart,JbCancel;
-	 private JRadioButton JRBSmall,JRBNormall,JRBBig, JRBBgm1,JRBBgm2,JRBBgm3,JRBCdv,JRBCmario,JRBCbm;
-	 private ButtonGroup bgGroup,bsGroup,charGroup;
-	 private JLabel bgLabel,boardsizeLabel,charcterLabel;
+	 private JRadioButton JRBSmall,JRBNormall,JRBBig,JRBCdv,JRBCmario,JRBCbm;
+	 private ButtonGroup bsGroup,charGroup;
+	 private JLabel boardsizeLabel,charcterLabel;
 	 private String gameBgm = "1";
+         private String gameCharacter = "warrior.png"; //defaults to warrior.png
 	 
 	 public StartPage(final String username){
 		 startFrame = new JFrame();
-		 startPanel = new BackPanel("StartBg");
+		 startPanel = new BackPanel("startBg1");
 		 
-	     int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
-	     int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
+	     int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 768) / 2;
+	     int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 576) / 2;
 	     startFrame.setLocation(w, h);
 	     
 	     //get images
@@ -38,26 +39,23 @@ public class StartPage {
 	     //set labels
 	     boardsizeLabel =new JLabel("Choose board size.(TODO for next sprint)",JLabel.CENTER);
 	     boardsizeLabel.setFont(new Font("Dialog",1,20));
-	     boardsizeLabel.setBounds(0,0,1036,25);
+	     boardsizeLabel.setBounds(0,0,768,25);
 	     
-	     charcterLabel =new JLabel("Choose your character.(TODO for next sprint)",JLabel.CENTER);
+	     charcterLabel =new JLabel("Choose your character.",JLabel.CENTER);
 	     charcterLabel.setFont(new Font("Dialog",1,20));
-	     charcterLabel.setBounds(0,380,1036,25);
+	     charcterLabel.setBounds(0,180,768,25);
 
-	     bgLabel =new JLabel("Choose the background music.",JLabel.CENTER);
-	     bgLabel.setFont(new Font("Dialog",1,20));
-	     bgLabel.setBounds(0,200,1036,25);
-	     
 	     //Create start button       
 	     JbStart = new JButton();
 	     JbStart.setIcon(startIcon);
-	     JbStart.setBounds(450, 600, 150, 50);
+	     JbStart.setBounds(309, 400, 150, 50);
 	     JbStart.addActionListener(new java.awt.event.ActionListener() {
 	     @Override
          public void actionPerformed(java.awt.event.ActionEvent evt) {
 	    	// create the game object
 	    	 //startFrame.dispose();
-	         final Game game = new Game(username,gameBgm);
+	    	 startFrame.dispose();
+	         final Game game = new Game(username,gameBgm,gameCharacter);
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
 	         gui.requestFocus();
@@ -78,7 +76,7 @@ public class StartPage {
 	      //create cancel button  
 	      JbCancel=new JButton();
 	      JbCancel.setIcon(CancelIcon);
-	      JbCancel.setBounds(450, 660, 150, 50);
+	      JbCancel.setBounds(309, 475, 150, 50);
 	      JbCancel.addActionListener(new java.awt.event.ActionListener() {
 	      @Override
 	      public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +87,7 @@ public class StartPage {
 	      
 	      //set board size buttons
 	      JRBSmall = new JRadioButton("Small (8x8)");
-	      JRBSmall.setBounds(475,45,150,40);
+	      JRBSmall.setBounds(349,45,150,40);
 	      JRBSmall.setOpaque(false);
 	      JRBSmall.addActionListener(new ActionListener(){
 			@Override
@@ -99,8 +97,9 @@ public class StartPage {
 	      });
 	      
 	      JRBNormall = new JRadioButton("Normall (10x10)");
-	      JRBNormall.setBounds(475,85,150,40);
+	      JRBNormall.setBounds(349,85,150,40);
 	      JRBNormall.setOpaque(false);
+	      JRBNormall.setSelected(true);
 	      JRBNormall.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -109,7 +108,7 @@ public class StartPage {
 	      });
 	      
 	      JRBBig = new JRadioButton("Big (12x12)");
-	      JRBBig.setBounds(475,125,150,40);
+	      JRBBig.setBounds(349,125,150,40);
 	      JRBBig.setOpaque(false);
 	      JRBBig.addActionListener(new ActionListener(){
 			@Override
@@ -118,66 +117,35 @@ public class StartPage {
 			}	    	  
 	      });
 	      
-	      //set background radio buttons
-	      JRBBgm1 = new JRadioButton("Fight");
-	      JRBBgm1.setBounds(475,230,90,35);
-	      JRBBgm1.setOpaque(false);
-	      JRBBgm1.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				gameBgm = "1";
-			}	    	  
-	      });
-	
-	      
-	      JRBBgm2 = new JRadioButton("Happy");
-	      JRBBgm2.setBounds(475,265,90,35);
-	      JRBBgm2.setOpaque(false);
-	      JRBBgm2.addActionListener(new ActionListener(){
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					gameBgm = "2";
-				}	    	  
-		      });
-	      
-	      JRBBgm3 = new JRadioButton("Relax");
-	      JRBBgm3.setBounds(475,300,90,35);
-	      JRBBgm3.setOpaque(false);
-	      JRBBgm3.addActionListener(new ActionListener(){
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					gameBgm = "3";
-				}	    	  
-		      });
-	      
 	      //set up character buttons
-	      JRBCdv = new JRadioButton("Male");
-	      JRBCdv.setBounds(550,400,100,50);
+	      JRBCdv = new JRadioButton("Warrior");
+	      JRBCdv.setSelected(true);
+	      JRBCdv.setBounds(349,200,100,50);
 	      JRBCdv.setOpaque(false);
 	      JRBCdv.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+                            gameCharacter = "warrior.png";
 			}	    	  
 	      });
 	      
-	      JRBCmario = new JRadioButton("Female");
-	      JRBCmario.setBounds(550,450,100,50);
+	      JRBCmario = new JRadioButton("Archer");
+	      JRBCmario.setBounds(349,240,100,50);
 	      JRBCmario.setOpaque(false);
 	      JRBCmario.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+                            gameCharacter = "archer.png";
 			}	    	  
 	      });
 	      
-	      JRBCbm = new JRadioButton("Animal");
-	      JRBCbm.setBounds(550,500,100,50);
+	      JRBCbm = new JRadioButton("Wizard");
+	      JRBCbm.setBounds(349,280,100,50);
 	      JRBCbm.setOpaque(false);
 	      JRBCbm.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+                            gameCharacter = "wizard.png";
 			}	    	  
 	      });
 	      
@@ -186,10 +154,7 @@ public class StartPage {
 	      bsGroup.add(JRBNormall);
 	      bsGroup.add(JRBBig);
 	      
-	      bgGroup = new ButtonGroup();
-	      bgGroup.add(JRBBgm1);
-	      bgGroup.add(JRBBgm2);
-	      bgGroup.add(JRBBgm3);
+
 	      
 	      charGroup = new ButtonGroup();
 	      charGroup.add(JRBCdv);
@@ -201,10 +166,6 @@ public class StartPage {
 	     startPanel.add(JRBSmall);
 	     startPanel.add(JRBNormall);
 	     startPanel.add(JRBBig);
-	     startPanel.add(bgLabel);
-	     startPanel.add(JRBBgm1);
-	     startPanel.add(JRBBgm2);
-	     startPanel.add(JRBBgm3);
 	     startPanel.add(charcterLabel);
 	     startPanel.add(JRBCdv);
 	     startPanel.add(JRBCmario);
@@ -215,7 +176,7 @@ public class StartPage {
 	     startFrame.add(startPanel);
 	     startFrame.setResizable(false);
 	     startFrame.setTitle("Kiwi Island");  
-	     startFrame.setSize(1036, 800);  
+	     startFrame.setSize(768, 576);  
 	     startFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
 	     startFrame.setVisible(true);  
 		 

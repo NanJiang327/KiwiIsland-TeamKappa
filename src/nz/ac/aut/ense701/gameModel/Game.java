@@ -1,17 +1,16 @@
 package nz.ac.aut.ense701.gameModel;
 
-import sun.audio.*; 
-import java.applet.Applet;
 import java.applet.AudioClip;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
+
+
 
 /**
  * This is the class that knows the Kiwi Island game rules and state
@@ -36,15 +35,63 @@ public class Game
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
-    public Game(String username,String bgm) 
+    public Game(String username,String bgm,String gameCharacter) 
     {   
         eventListeners = new HashSet<GameEventListener>();
         this.username = username;
-        this.bg = bgm;
+        this.bgm = bgm;
+        this.gameCharacter = gameCharacter;
         playBgm(bgm);
         createNewGame();
     }
     
+
+    public void playBgm(String songNo) {
+		this.songNo = songNo;
+		mplayer = new MusicPlayer();
+		mplayer.setPath(getClass().getResourceAsStream("/Bgm/" + songNo + ".mp3"));
+		mplayer.play(-1);
+	}
+    
+    public void stop(){
+    	mplayer.stop();
+    }
+
+	public void pause() {
+		mplayer.pause();
+		mplayer.setPath(getClass().getResourceAsStream("/Bgm/" + songNo + ".mp3"));
+	}
+
+	public void resume()  {
+		mplayer.resume();
+	}
+
+	public void nextSong() {
+		mplayer.stop();
+		int i = Integer.parseInt(songNo);
+		if (i < 10) {
+			i++;
+		} else {
+			i = 1;
+		}
+		songNo = String.valueOf(i);
+		mplayer.setPath(getClass().getResourceAsStream("/Bgm/" + songNo + ".mp3"));
+		mplayer.play(-1);
+	}
+
+	public void lastSong() {
+		mplayer.stop();
+		int i = Integer.parseInt(songNo);
+		if (i > 1) {
+			i--;
+		} else {
+			i = 10;
+		}
+		songNo = String.valueOf(i);
+		mplayer.setPath(getClass().getResourceAsStream("/Bgm/" + songNo + ".mp3"));
+		mplayer.play(-1);
+	}
+
     
     /**
      * Starts a new game.
@@ -65,40 +112,6 @@ public class Game
         notifyGameEventListeners();
     }
     
-    public void playBgm(String songNo){
-    	this.songNo = songNo;
-    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
-        audio1=Applet.newAudioClip(codebase);
-	    audio1.loop();    
-    }
-    
-    public void nextSong(){
-    	audio1.stop();
-    	int i = Integer.parseInt(songNo);
-    	if(i<10){
-    		i++;
-    	}else{
-    		i=1;
-    	}
-    	songNo = String.valueOf(i);
-    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
-        audio1=Applet.newAudioClip(codebase);
-	    audio1.loop();   
-    }
-    
-    public void lastSong(){
-    	audio1.stop();
-    	int i = Integer.parseInt(songNo);
-    	if(i>1){
-    		i--;
-    	}else{
-    		i=10;
-    	}
-    	songNo = String.valueOf(i);
-    	codebase = getClass().getResource("/Bgm/"+songNo+".wav");
-        audio1=Applet.newAudioClip(codebase);
-	    audio1.loop();   
-    }
 
     /***********************************************************************************************************************
      * Accessor methods for game data
@@ -282,6 +295,10 @@ public class Game
     public String getPlayerName()
     {
         return player.getName();
+    }
+    
+    public String getBgm(){
+    	return bgm;
     }
 
     /**
@@ -596,7 +613,6 @@ public class Game
         {
             state = GameState.LOST;
             message = "Sorry, you have lost the game. " + this.getLoseMessage();
-            this.setLoseMessage(message);
         }
         else if (!playerCanMove() )
         {
@@ -881,41 +897,22 @@ public class Game
         }
     }    
 
+        public String getGameCharacter() {
+            return this.gameCharacter;
+        }
 
 
-	public AudioClip getAudio1() {
-		return audio1;
-	}
-
-
-	public void setAudio1(AudioClip audio1) {
-		this.audio1 = audio1;
-	}
-
-
-
-	public URL getCodebase() {
-		return codebase;
-	}
-
-
-	public void setCodebase(URL codebase) {
-		this.codebase = codebase;
-	}
-
-
-
+    private MusicPlayer mplayer;
 	private Island island;
     private Player player;
-    private String username,bg;
+    private String username,bgm;
+    private String gameCharacter;
     private String songNo;
-    private URL codebase;
     private GameState state;
     private int kiwiCount;
     private int totalPredators;
     private int totalKiwis;
     private int predatorsTrapped;
-    private AudioClip audio1;
     private Set<GameEventListener> eventListeners;
     
     private final double MIN_REQUIRED_CATCH = 0.8;
