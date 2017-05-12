@@ -10,6 +10,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import com.sun.javafx.scene.control.skin.LabeledText;
+
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Terrain;
 
@@ -52,63 +55,89 @@ public class GridSquarePanel extends javax.swing.JPanel
         Terrain terrain   = game.getTerrain(row, column);
         boolean squareVisible = game.isVisible(row, column);
         boolean squareExplored = game.isExplored(row, column);
-        
-        Color      color;
-        
         switch ( terrain )
         {
-            case SAND     : color = Color.YELLOW; break;
-            case FOREST   : color = Color.GREEN;  break;
-            case WETLAND : color = Color.BLUE; break;
-            case SCRUB : color = Color.DARK_GRAY;   break;
-            case WATER    : color = Color.CYAN;   break;
-            default  : color = Color.LIGHT_GRAY; break;
+                case SAND     : 
+                	setImage("sand.png");
+                	break;
+                case FOREST   : 
+                	setImage("green.png");  
+                	break;
+                case WETLAND : 
+                	setImage("wet.png");
+                	break;
+                case SCRUB : 
+                	setImage("scrub.png");
+                	break;
+                case WATER    : 
+                	setImage("water.png");
+                	break;
+                default  : setImage(game.getGameCharacter()); break;
+
         }
         
         if ( squareExplored || squareVisible )
         {
             String occupantSymbol = game.getOccupantStringRepresentation(row, column);
-            // Set the text of the JLabel according to the occupant
-            lblText.setText(occupantSymbol);
-            // Set the colour. 
-            if ( squareVisible && !squareExplored ) 
-            {
-                // When explored the colour is brighter
-                color = new Color(Math.min(255, color.getRed()   + 128), 
-                                  Math.min(255, color.getGreen() + 128), 
-                                  Math.min(255, color.getBlue()  + 128));
-            }
-            lblText.setBackground(color);
-
 
             if(game.hasPlayer(row,column)) {
                 setBackground();
             } else {
-                clearBackground();
-                setBorder(normalBorder);
+            	clearBackground();
             }
             
             //switch statements can't be used on strings in this version of JDK
             //so IF statements.
-            if(occupantSymbol.contains("K")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/kiwi.png")));}
-            if(occupantSymbol.contains("F") || occupantSymbol.contains("P")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/animal.png")));}
-            if(occupantSymbol.contains("H")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/hole.png")));}
-            if(occupantSymbol.contains("T")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/trap.png")));}
-            if(occupantSymbol.contains("E")){lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/food.png")));}
+            if(game.hasPlayer(row, column)){
+            	setImage(game.getGameCharacter());
+            }else{
+            if(occupantSymbol.contains("K")){
+            	setImage("kiwi.png");}
+            if(occupantSymbol.contains("F")){
+            	setImage("animal.png");}
+            if( occupantSymbol.contains("P")){
+            	setImage("predator.png");}
+            if(occupantSymbol.contains("H")){
+            	setImage("hole.png");
+            	}
+            if(occupantSymbol.contains("T")){
+            	setImage("tool.png");}
+            if(occupantSymbol.contains("E")){
+            	setImage("food.png");}
+            }
       
             setBorder(game.hasPlayer(row,column) ? activeBorder : normalBorder);
         }
         else
         {
             lblText.setText("");
-            lblText.setBackground(null);
-            setBorder(normalBorder);
+            //lblText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/trap.png")));
+           // setBorder(normalBorder);
         }
     }
     
     
     public void clearBackground() {
-        setImage("empty.png");
+    	Terrain terrain   = game.getTerrain(row, column);
+        switch ( terrain )
+        {
+            case SAND     : 
+            	setImage("sand.png");
+            	break;
+            case FOREST   : 
+            	setImage("green.png");  
+            	break;
+            case WETLAND : 
+            	setImage("wet.png");
+            	break;
+            case SCRUB : 
+            	setImage("scrub.png");
+            	break;
+            case WATER    : 
+            	setImage("water.png");
+            	break;
+            default  : setImage(null); break;
+        }
     }
     public void setBackground() {
         setImage(game.getGameCharacter());     
@@ -137,16 +166,16 @@ public class GridSquarePanel extends javax.swing.JPanel
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+ 
         lblText = new javax.swing.JLabel();
-
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setLayout(new java.awt.BorderLayout());
-
+       // setImage("land.png");
+      //  update();
         lblText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblText.setOpaque(true);
         add(lblText, java.awt.BorderLayout.CENTER);
+        
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblText;
@@ -155,6 +184,6 @@ public class GridSquarePanel extends javax.swing.JPanel
     private Game game;
     private int row, column;
     
-    private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
-    private static final Border activeBorder = new LineBorder(Color.RED, 3);
+    private static final Border normalBorder = new LineBorder(Color.WHITE, 1);
+    private static final Border activeBorder = new LineBorder(Color.WHITE, 3);
 }

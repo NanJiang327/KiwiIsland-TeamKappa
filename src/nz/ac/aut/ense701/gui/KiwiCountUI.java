@@ -15,6 +15,8 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import nz.ac.aut.ense701.gui.LostRestartExit;
+import sun.nio.cs.ext.TIS_620;
 
 
 
@@ -63,26 +65,23 @@ public class KiwiCountUI
         // check for "game over" or "game won"
         if ( game.getState() == GameState.LOST )
         {
-            this.pnlIsland.removeAll();
+        	this.pnlIsland.removeAll();
             this.pnlIsland.repaint();
             this.pnlIsland.revalidate();
-            initIslandGrid();
-            JOptionPane.showMessageDialog(
-                    this, 
-                    game.getLoseMessage(), "Game over!",
-                    JOptionPane.INFORMATION_MESSAGE);
-                     game.createNewGame();
+            this.dispose();
+        	game.stop();
+            new LostRestartExit(game);   
+        	      
         }
         else if ( game.getState() == GameState.WON )
         {
             this.pnlIsland.removeAll();
             this.pnlIsland.repaint();
             this.pnlIsland.revalidate();
-            JOptionPane.showMessageDialog(
-                    this, 
-                    game.getWinMessage(), "Well Done!",
-                    JOptionPane.INFORMATION_MESSAGE);
-            game.createNewGame();
+            this.dispose();
+        	game.stop();
+            new LostRestartExit(game);    
+            
         }
         else if (game.messageForPlayer())
         {
@@ -121,10 +120,10 @@ public class KiwiCountUI
                 	  break;
                   case KeyEvent.VK_F2:
                 	  if(i==0){
-						game.getAudio1().stop();
+						game.pause();
 						 i=1;
                 	  }else{
-                		game.getAudio1().loop();;
+                		game.resume();
                 		i=0;
                 	  }	  
                 	  break;
