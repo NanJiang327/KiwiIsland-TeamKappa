@@ -69,7 +69,7 @@ public class Game
 	public void nextSong() {
 		mplayer.stop();
 		int i = Integer.parseInt(songNo);
-		if (i < 10) {
+		if (i < 5) {
 			i++;
 		} else {
 			i = 1;
@@ -85,7 +85,7 @@ public class Game
 		if (i > 1) {
 			i--;
 		} else {
-			i = 10;
+			i = 5;
 		}
 		songNo = String.valueOf(i);
 		mplayer.setPath(getClass().getResourceAsStream("/Bgm/" + songNo + ".mp3"));
