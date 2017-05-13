@@ -2,15 +2,12 @@ package nz.ac.aut.ense701.userinfo;
 
 import java.security.MessageDigest;
 
-/**   
- * 对密码进行加密和验证的类  
- */    
+ 
 public class Hashing{    
         
     private final static String[] hexDigits = {"0", "1", "2", "3", "4",    
         "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};    
-        
-    /** * 把inputString加密     */    
+         
     public static String generatePassword(String inputString){    
         return encodeByMD5(inputString);    
     }    
@@ -25,15 +22,12 @@ public class Hashing{
     }    
     public static String returnEncodeByMde(String originString){  
         return encodeByMD5(originString);  
-    }  
-    /**  对字符串进行MD5加密     */    
+    }   
     private static String encodeByMD5(String originString){    
         if (originString != null){    
             try{    
-                MessageDigest md = MessageDigest.getInstance("MD5");    
-                //使用指定的字节数组对摘要进行最后更新，然后完成摘要计算    
-                byte[] results = md.digest(originString.getBytes());    
-                //将得到的字节数组变成字符串返回    
+                MessageDigest md = MessageDigest.getInstance("MD5");     
+                byte[] results = md.digest(originString.getBytes());     
                 String resultString = byteArrayToHexString(results);    
                 String pass =  resultString.toUpperCase();    
                 return pass;  
@@ -62,21 +56,5 @@ public class Hashing{
         return hexDigits[d1] + hexDigits[d2];    
     }    
       
-    public static void main(String[] args){  
-                 String pwd1="123";    
-                 String pwd2="";    
-                 Hashing cipher = new Hashing();    
-                 System.out.println("未加密的密码:"+pwd1);    
-                 //将123加密    
-                 pwd2 = cipher.generatePassword(pwd1);    
-                 System.out.println("加密后的密码:"+pwd2);    
-                     
-                 System.out.print("验证密码是否下确:");    
-                 if(cipher.validatePassword(pwd2, pwd1)) {    
-                     System.out.println("正确");    
-                 }    
-                 else {    
-                     System.out.println("错误");    
-                 }    
-    }  
+
 }   

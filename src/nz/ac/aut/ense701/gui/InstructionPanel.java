@@ -75,7 +75,7 @@ public class InstructionPanel {
         rulesBtn.addActionListener(new java.awt.event.ActionListener(){
         	@Override
         	public void actionPerformed(java.awt.event.ActionEvent evt){
-        		textField.setText("The character¡¯s stamina in the game."
+        		textField.setText("The character's stamina in the game."
         				+ "\n1.Each step your character takes will deplete your stamina based on the color of the map. Hint: Different colored map has different percentage deduction on your stamina."
         				+ "\n2.When your character stamina reaches zero your character dies."
         				+ "\n3.When your character steps on different hazard either your character dies instantly or will lose stamina."
