@@ -180,5 +180,70 @@ public class LoginPage{
     		JTUsername.requestFocus();
     	}
     }
+    
+    public boolean verify(String username,String pwd,Userinfo user) throws IOException{
+    	//the username format
+    	usernameFormat = "[a-zA-Z0-9_]{5,15}";
+    	//the password format.
+    	pwdFormat = "[a-zA-Z0-9]{5,15}";
+    	
+    	
+    	Pattern userPattern = Pattern.compile(usernameFormat);
+    	Pattern pwdPattern = Pattern.compile(pwdFormat);
+    	
+    	//Set usernmae, password pattern
+    	Matcher usernameMatcher = userPattern.matcher(username);
+    	Matcher pwdMatcher = pwdPattern.matcher(pwd);
+    	
+    	if(usernameMatcher.matches())
+    	{
+    		if(pwdMatcher.matches())
+    		{
+    				user.verify(username, pwd);
+    				if(user.isLoginFound())
+    				{
+    					if(user.isVerified())
+    					{
+    						success = true;
+    						JOptionPane.showMessageDialog(null, "Welcome back! User "+username+"");
+    						return true;
+    					}
+    					else
+    					{
+        					JOptionPane.showMessageDialog(null, "Password or Username is wrong","Error!", JOptionPane.ERROR_MESSAGE);
+        		    		JTUsername.setText("");
+        		    		JPwd.setText("");
+        		    		JTUsername.requestFocus();
+        		    		return false;
+    					}	
+    	              
+    				}
+    				else
+    				{
+    					JOptionPane.showMessageDialog(null, "This username doesn't exist.","Error!", JOptionPane.ERROR_MESSAGE);
+    		    		JTUsername.setText("");
+    		    		JPwd.setText("");
+    		    		JTUsername.requestFocus();
+    		    		return false;
+    				}
+    				
+    				
+    			}else{
+    				JOptionPane.showMessageDialog(null, "The password can only have numbers and letters, the length of password is between 5 to 15.","Error", JOptionPane.ERROR_MESSAGE);
+    				JTUsername.setText("");
+    	    		JPwd.setText("");
+    	    		JTUsername.requestFocus();
+    	    		return false;
+    			}
+    	}
+    	else
+    	{
+    		JOptionPane.showMessageDialog(null, "The username can only have numbers,letters and _,the length of username is between 5 to 15", "Error!", JOptionPane.ERROR_MESSAGE);
+    		JTUsername.setText("");
+    		JPwd.setText("");
+    		JTUsername.requestFocus();
+    		return false;
+    	}
+    }
   
 }  

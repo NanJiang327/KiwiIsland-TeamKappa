@@ -89,6 +89,7 @@ public class Userinfo {
 	public void setLoginFound(boolean loginFound) {
 		this.loginFound = loginFound;
 	}
+	
 }
 			  
 
