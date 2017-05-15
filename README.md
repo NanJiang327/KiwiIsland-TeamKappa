@@ -3,7 +3,7 @@
 ------------------------------------------------------------------------
 This is the project README file.
 -----------------------------------------------------------------------
-Install guide: add jl1.0.1.jar(provided in the documents) to build path
+Install guide: add jl1.0.1.jar(provided in one note) to build path
 
 PROJECT TITLE: Kiwi Island
 
