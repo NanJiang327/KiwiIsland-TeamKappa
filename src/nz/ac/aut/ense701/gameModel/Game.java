@@ -617,13 +617,13 @@ public class Game
         else if (!playerCanMove() )
         {
             state = GameState.LOST;
-            message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";
+            message = "Sorry, you have lost the game.You do not have sufficient stamina to move.";
             this.setLoseMessage(message);
         }
         else if(predatorsTrapped == totalPredators)
         {
             state = GameState.WON;
-            message = "You win! You have done an excellent job and trapped all the predators.";
+            message = "You have spent "+min+" minutes "+sec+" seconds to win! You have done an excellent job and trapped all the predators.";
             this.setWinMessage(message);
         }
         else if(kiwiCount == totalKiwis)
@@ -631,7 +631,7 @@ public class Game
             if(predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH)
             {
                 state = GameState.WON;
-                message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
+                message = "You have spent "+min+" minutes "+sec+" seconds to win! You have counted all the kiwi and trapped at least 80% of the predators.";
                 this.setWinMessage(message);
             }
         }
@@ -901,7 +901,7 @@ public class Game
             return this.gameCharacter;
         }
 
-
+    public int min,sec;
     private MusicPlayer mplayer;
 	private Island island;
     private Player player;

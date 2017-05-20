@@ -1,22 +1,21 @@
 package nz.ac.aut.ense701.gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.event.*;
-import javax.swing.JPanel;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 import nz.ac.aut.ense701.gui.LostRestartExit;
-import sun.nio.cs.ext.TIS_620;
+
 
 
 
@@ -29,7 +28,7 @@ import sun.nio.cs.ext.TIS_620;
 
 public class KiwiCountUI 
     extends javax.swing.JFrame 
-    implements GameEventListener
+    implements GameEventListener, Runnable
 {
 
     /**
@@ -61,6 +60,8 @@ public class KiwiCountUI
     public void gameStateChanged()
     {
         update();
+        game.min = min;
+        game.sec = sec;
         
         // check for "game over" or "game won"
         if ( game.getState() == GameState.LOST )
@@ -90,9 +91,50 @@ public class KiwiCountUI
                     game.getPlayerMessage(), "Important Information",
                     JOptionPane.INFORMATION_MESSAGE);   
         }
+
     }
     
-     private void setAsGameListener()
+    
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        while(true){
+               if(sec == 59){
+                    sec = 0;
+                    min +=1 ;
+                }else{
+                	sec +=1;
+                }
+               showTime();
+           
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+             
+        }
+    }
+     
+    private void showTime(){
+        String strTime ="Time Spend:   ";
+         
+        if(min < 10)
+            strTime = strTime+"0"+min+":";
+        else
+            strTime = strTime+ ""+min+":";
+         
+        if(sec < 10)
+            strTime = strTime+"0"+sec+"";
+        else
+            strTime = strTime+""+sec+"";
+         
+        timeCount.setText(strTime);
+    }  
+    
+
+	private void setAsGameListener()
     {
        game.addGameEventListener(this); 
        //Add key listener to control the movement.
@@ -233,6 +275,9 @@ public class KiwiCountUI
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
+        timeCount = new javax.swing.JLabel();
+        timeCount.setFont(new java.awt.Font("Dialog",0,15)); 
+        timeCount.setForeground(Color.red);
         javax.swing.JPanel pnlMovement = new javax.swing.JPanel();
         btnMoveNorth = new javax.swing.JButton();
         btnMoveSouth = new javax.swing.JButton();
@@ -360,6 +405,12 @@ public class KiwiCountUI
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlPlayerData.add(lblKiwisCounted, gridBagConstraints);
+        
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlPlayerData.add(timeCount, gridBagConstraints);
 
         txtKiwisCounted.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -776,6 +827,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnUse;
     private javax.swing.JLabel lblKiwisCounted;
     private javax.swing.JLabel lblPredators;
+    private javax.swing.JLabel timeCount;
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
     private javax.swing.JPanel pnlIsland;
@@ -790,5 +842,7 @@ public class KiwiCountUI
     // End of variables declaration//GEN-END:variables
 
     private Game game;
+    private int min =0;
+    private int sec =0 ;
  }
 

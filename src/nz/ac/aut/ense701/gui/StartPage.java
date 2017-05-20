@@ -58,6 +58,8 @@ public class StartPage {
 	         final Game game = new Game(username,gameBgm,gameCharacter);
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
+	         Thread newThread = new Thread(gui);
+	         newThread.start();
 	         gui.requestFocus();
 	         // make the GUI visible
 	         java.awt.EventQueue.invokeLater(new Runnable() 
@@ -181,5 +183,9 @@ public class StartPage {
 	     startFrame.setVisible(true);  
 		 
 	 }
-
+	 
+	 public static void main(String[] args)
+	 {
+		new StartPage("sss");
+		}
 }

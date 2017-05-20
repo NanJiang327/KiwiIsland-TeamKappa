@@ -35,7 +35,7 @@ public class LostRestartExit {
         initComponents();
         gameStateFrame.setLocationRelativeTo(null);
         // this.pack();
-        gameStateFrame.setSize(250, 200);
+        gameStateFrame.setSize(250, 300);
         int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 250) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 200) / 2;
     	gameStateFrame.setLocation(w, h);
@@ -79,7 +79,7 @@ public class LostRestartExit {
         Exit = new javax.swing.JButton("Exit");
         NewGame = new javax.swing.JButton("Reset Game");
         dispMsg = new JTextArea();
-        dispMsg = new JTextArea(20,20);
+        dispMsg = new JTextArea(20,30);
         dispMsg.setLineWrap(true);
         dispMsg.setWrapStyleWord(true);
         dispMsg.setTabSize(4);
@@ -140,6 +140,8 @@ public class LostRestartExit {
         Game newGame = new Game(player, bgm, gameCharacter);
         // create the GUI for the game
         final KiwiCountUI gui = new KiwiCountUI(newGame);
+        Thread newThread = new Thread(gui);
+        newThread.start();
         gui.requestFocus();
         // make the GUI visible
         java.awt.EventQueue.invokeLater(new Runnable() {
