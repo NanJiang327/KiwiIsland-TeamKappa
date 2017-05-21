@@ -53,7 +53,7 @@ public class RankPanel {
 	    rankTable.setFont(new  java.awt.Font("Dialog",   0,   30));
 	    rankTable.getTableHeader().setFont(new java.awt.Font("Dialog",   0,   30));
 	    rankTable.getTableHeader().setBackground(Color.CYAN);
-	    readFileToMap("normalHistory");
+	    readFileToMap("normal");
 	    JSP = new JScrollPane(rankTable);
 
 	    smallBoardBtn = new JButton("Normal Board");
@@ -124,29 +124,30 @@ public class RankPanel {
 		FileReader fr = new FileReader(""+fileName+".txt");
 	    BufferedReader br = new BufferedReader(fr);
 	    String str = null;
-	    HashMap<String, String> map = new HashMap<String, String>();
+	    HashMap<String, Double> map = new HashMap<String,Double>();
 	    while((str = br.readLine()) != null)
 	    {
 	    	String time = br.readLine();
-	    	String newStr = time.replace("."," : ");
-	    	System.out.println(newStr+"");
-	    	map.put(str, newStr);
+	    	Double convertTime = Double.parseDouble(time);
+	    	//System.out.println(newStr+"");
+	    	map.put(str, convertTime);
 	    }
 	    
 	   
-         List<Map.Entry<String,String>> list = new ArrayList<Map.Entry<String,String>>(map.entrySet());
-        Collections.sort(list,new Comparator<Map.Entry<String,String>>() {
+         List<Map.Entry<String,Double>> list = new ArrayList<Map.Entry<String,Double>>(map.entrySet());
+        Collections.sort(list,new Comparator<Map.Entry<String,Double>>() {
             @Override
-            public int compare(Entry<String, String> o1,
-                    Entry<String, String> o2) {
+            public int compare(Entry<String, Double> o1,
+                    Entry<String, Double> o2) {
                 return o1.getValue().compareTo(o2.getValue());
             }
             
         });
         int i = 0;
-        for(Map.Entry<String,String> mapping:list){
+        for(Map.Entry<String,Double> mapping:list){
         	i++;
-        	String[] newRow = {mapping.getKey(),mapping.getValue()};
+        	String time = mapping.getValue().toString();
+        	String[] newRow = {mapping.getKey(),time};
         	tableModel.addRow(newRow);
         	if(i>10){
         		break;
