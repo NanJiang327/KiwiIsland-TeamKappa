@@ -137,7 +137,8 @@ public class LostRestartExit {
         String player = game.getPlayerName();
         String bgm = game.getBgm();
         String gameCharacter = game.getGameCharacter();
-        Game newGame = new Game(player, bgm, gameCharacter);
+        String boardSize = game.getBoardSize();
+        Game newGame = new Game(player, bgm, gameCharacter, boardSize);
         // create the GUI for the game
         final KiwiCountUI gui = new KiwiCountUI(newGame);
         Thread newThread = new Thread(gui);

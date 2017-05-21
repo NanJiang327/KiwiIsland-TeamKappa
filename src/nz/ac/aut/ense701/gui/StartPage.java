@@ -22,7 +22,8 @@ public class StartPage {
 	 private ButtonGroup bsGroup,charGroup;
 	 private JLabel boardsizeLabel,charcterLabel;
 	 private String gameBgm = "1";
-         private String gameCharacter = "warrior.png"; //defaults to warrior.png
+     private String gameCharacter = "warrior.png"; //defaults to warrior.png
+     private String boardSize = "normalHistory";
 	 
 	 public StartPage(final String username){
 		 startFrame = new JFrame();
@@ -55,7 +56,7 @@ public class StartPage {
 	    	// create the game object
 	    	 //startFrame.dispose();
 	    	 startFrame.dispose();
-	         final Game game = new Game(username,gameBgm,gameCharacter);
+	         final Game game = new Game(username,gameBgm,gameCharacter, boardSize);
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
 	         Thread newThread = new Thread(gui);

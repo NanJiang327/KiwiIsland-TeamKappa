@@ -2,6 +2,8 @@ package nz.ac.aut.ense701.gui;
 
 
 import java.awt.Toolkit;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,8 +62,12 @@ public class MainPage {
 	        JbRank.addActionListener(new java.awt.event.ActionListener() {
 	        	@Override
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                //TODO
-	        		JOptionPane.showMessageDialog(null, "TODO next iteration");
+	               try {
+					new RankPanel();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	            }
 	        });
 	        //set up the logout button

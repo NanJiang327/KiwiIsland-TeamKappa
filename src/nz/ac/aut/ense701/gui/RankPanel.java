@@ -5,19 +5,35 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class RankPanel { 
 	private JPanel rankPanel;
 	private JButton smallBoardBtn,normalBoardBtn,bigBoardBtn,backBtn;
-	private JTextArea textField;
+	private JTable rankTable;
+	private DefaultTableModel tableModel;
 	private JFrame rankFrame;
-
-	public RankPanel(){
+	private Object[][] data;
+	private JScrollPane JSP;
+	public RankPanel() throws IOException{
 	    rankFrame = new JFrame();
 	    int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 1036) / 2;
 		int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 800) / 2;
@@ -27,26 +43,43 @@ public class RankPanel {
 		//Create the instruction panel
 	    rankPanel = new JPanel();
 	    rankPanel.setLayout(new GridLayout(1, 4));
-	    textField = new JTextArea(20,20);
-	    textField.setLineWrap(true);
-	    textField.setWrapStyleWord(true);
-	    textField.setTabSize(4);
-	    textField.setBackground(Color.white);
-	    textField.setEditable(false);
-	    textField.setFont(new  java.awt.Font("Dialog",   1,   30));
-	    textField.setText("");
+	    String[] columnNames = {"Name","Time (Minutes : Seconds)"};
+	    tableModel = new DefaultTableModel(data,columnNames);
+	    rankTable = new JTable(tableModel);
+	    rankTable.setRowSelectionAllowed (false);
+	    rankTable.setColumnSelectionAllowed(false);
+	    rankTable.setShowGrid (false);
+	    rankTable.setRowHeight (35);
+	    rankTable.setFont(new  java.awt.Font("Dialog",   0,   30));
+	    rankTable.getTableHeader().setFont(new java.awt.Font("Dialog",   0,   30));
+	    rankTable.getTableHeader().setBackground(Color.CYAN);
+	    readFileToMap("normalHistory");
+	    JSP = new JScrollPane(rankTable);
+
 	    smallBoardBtn = new JButton("Normal Board");
 	    smallBoardBtn.addActionListener(new java.awt.event.ActionListener(){
 	    	@Override
 	    	public void actionPerformed(java.awt.event.ActionEvent evt){
-	    		textField.setText("");
+	    			tableModel.setRowCount(0);
+	    			try {
+						readFileToMap("normalHistory");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	           	}
 	    });
 	    normalBoardBtn = new JButton("Small Board");
 	    normalBoardBtn.addActionListener(new java.awt.event.ActionListener(){
 	    	@Override
 	    	public void actionPerformed(java.awt.event.ActionEvent evt){
-	    		textField.setText("");
+	    		tableModel.setRowCount(0);
+	    		try {
+					readFileToMap("smallHistory");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	    		
 	    	}
 	    });
@@ -54,7 +87,14 @@ public class RankPanel {
 	    bigBoardBtn.addActionListener(new java.awt.event.ActionListener(){
 	    	@Override
 	    	public void actionPerformed(java.awt.event.ActionEvent evt){
-	    		textField.setText("");
+	    		tableModel.setRowCount(0);
+	    		try {
+					readFileToMap("bigHistory");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    		
 	    	}
 	    });
 	    backBtn = new JButton("Back");
@@ -70,7 +110,7 @@ public class RankPanel {
 	    rankPanel.add(backBtn);
 	    
 	    contentPane.add(rankPanel, BorderLayout.NORTH);
-	    contentPane.add(textField, BorderLayout.CENTER);
+	    contentPane.add(JSP, BorderLayout.CENTER);
 	    
 	
 	    rankFrame.setResizable(false);
@@ -78,6 +118,41 @@ public class RankPanel {
 	    rankFrame.setSize(1036, 800);  
 	    rankFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
 	    rankFrame.setVisible(true);  
+	}
+	
+	public void readFileToMap(String fileName) throws IOException{
+		FileReader fr = new FileReader(""+fileName+".txt");
+	    BufferedReader br = new BufferedReader(fr);
+	    String str = null;
+	    HashMap<String, String> map = new HashMap<String, String>();
+	    while((str = br.readLine()) != null)
+	    {
+	    	String time = br.readLine();
+	    	String newStr = time.replace("."," : ");
+	    	System.out.println(newStr+"");
+	    	map.put(str, newStr);
+	    }
+	    
+	   
+         List<Map.Entry<String,String>> list = new ArrayList<Map.Entry<String,String>>(map.entrySet());
+        Collections.sort(list,new Comparator<Map.Entry<String,String>>() {
+            @Override
+            public int compare(Entry<String, String> o1,
+                    Entry<String, String> o2) {
+                return o1.getValue().compareTo(o2.getValue());
+            }
+            
+        });
+        int i = 0;
+        for(Map.Entry<String,String> mapping:list){
+        	i++;
+        	String[] newRow = {mapping.getKey(),mapping.getValue()};
+        	tableModel.addRow(newRow);
+        	if(i>10){
+        		break;
+        	}
+         }
+	    
 	}
 	
 }
