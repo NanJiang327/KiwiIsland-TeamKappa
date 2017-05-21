@@ -62,7 +62,7 @@ public class RankPanel {
 	    	public void actionPerformed(java.awt.event.ActionEvent evt){
 	    			tableModel.setRowCount(0);
 	    			try {
-						readFileToMap("normalHistory");
+						readFileToMap("normal");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -75,7 +75,7 @@ public class RankPanel {
 	    	public void actionPerformed(java.awt.event.ActionEvent evt){
 	    		tableModel.setRowCount(0);
 	    		try {
-					readFileToMap("smallHistory");
+					readFileToMap("small");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -89,7 +89,7 @@ public class RankPanel {
 	    	public void actionPerformed(java.awt.event.ActionEvent evt){
 	    		tableModel.setRowCount(0);
 	    		try {
-					readFileToMap("bigHistory");
+					readFileToMap("big");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -114,7 +114,7 @@ public class RankPanel {
 	    
 	
 	    rankFrame.setResizable(false);
-	    rankFrame.setTitle("Instruction Page");  
+	    rankFrame.setTitle("Rank Page");  
 	    rankFrame.setSize(1036, 800);  
 	    rankFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
 	    rankFrame.setVisible(true);  
