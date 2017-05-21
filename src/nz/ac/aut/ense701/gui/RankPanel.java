@@ -147,7 +147,8 @@ public class RankPanel {
         for(Map.Entry<String,Double> mapping:list){
         	i++;
         	String time = mapping.getValue().toString();
-        	String[] newRow = {mapping.getKey(),time};
+        	String convertTime = time.replace(".", " : ");
+        	String[] newRow = {mapping.getKey(),convertTime};
         	tableModel.addRow(newRow);
         	if(i>10){
         		break;
