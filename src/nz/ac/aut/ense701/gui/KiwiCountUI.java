@@ -172,7 +172,12 @@ public class KiwiCountUI
                   case KeyEvent.VK_F3:
                 	  game.nextSong();
                 	  break;
+                  case KeyEvent.VK_C:
+                	  Object obj = listObjects.getSelectedValue();
+                      game.collectItem(obj);
+                	  break;
               }  
+             
                 
           }  
           
