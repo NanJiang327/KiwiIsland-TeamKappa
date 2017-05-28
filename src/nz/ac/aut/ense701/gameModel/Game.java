@@ -35,12 +35,13 @@ public class Game
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
-    public Game(String username,String bgm,String gameCharacter) 
+    public Game(String username,String bgm,String gameCharacter,int gameBoard)
     {   
         eventListeners = new HashSet<GameEventListener>();
         this.username = username;
         this.bgm = bgm;
         this.gameCharacter = gameCharacter;
+        this.gameBoard = gameBoard;
         playBgm(bgm);
         createNewGame();
     }
@@ -103,7 +104,7 @@ public class Game
         totalKiwis = 0;
         predatorsTrapped = 0;
         kiwiCount = 0;
-        initialiseIslandFromFile("IslandData.txt");
+        initialiseIslandFromFile("IslandData" + Integer.toString(getGameBoardSize()) + ".txt");
         drawIsland();
         state = GameState.PLAYING;
         winMessage = "";
@@ -785,7 +786,7 @@ public class Game
 
             // read and setup the terrain
             setUpTerrain(input);
-
+            System.out.println("passed");
             // read and setup the player
             setUpPlayer(input);
 
@@ -897,9 +898,13 @@ public class Game
         }
     }    
 
-        public String getGameCharacter() {
-            return this.gameCharacter;
-        }
+    public String getGameCharacter() {
+        return this.gameCharacter;
+    }
+    public int getGameBoardSize() {
+        return gameBoard;
+    }
+        
 
 
     private MusicPlayer mplayer;
@@ -907,6 +912,7 @@ public class Game
     private Player player;
     private String username,bgm;
     private String gameCharacter;
+    private int gameBoard;
     private String songNo;
     private GameState state;
     private int kiwiCount;
