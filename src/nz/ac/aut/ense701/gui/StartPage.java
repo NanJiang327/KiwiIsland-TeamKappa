@@ -23,6 +23,7 @@ public class StartPage {
 	 private JLabel boardsizeLabel,charcterLabel;
 	 private String gameBgm = "1";
          private String gameCharacter = "warrior.png"; //defaults to warrior.png
+         private int gameBoard = 10;
 	 
 	 public StartPage(final String username){
 		 startFrame = new JFrame();
@@ -55,7 +56,7 @@ public class StartPage {
 	    	// create the game object
 	    	 //startFrame.dispose();
 	    	 startFrame.dispose();
-	         final Game game = new Game(username,gameBgm,gameCharacter);
+	         final Game game = new Game(username,gameBgm,gameCharacter,gameBoard);
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
 	         gui.requestFocus();
@@ -92,7 +93,7 @@ public class StartPage {
 	      JRBSmall.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+				gameBoard = 8;
 			}	    	  
 	      });
 	      
@@ -103,7 +104,7 @@ public class StartPage {
 	      JRBNormall.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+				gameBoard = 10;
 			}	    	  
 	      });
 	      
@@ -113,7 +114,7 @@ public class StartPage {
 	      JRBBig.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+				gameBoard = 12;
 			}	    	  
 	      });
 	      
