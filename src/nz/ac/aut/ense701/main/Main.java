@@ -14,12 +14,12 @@ public class Main
      * Main method of Kiwi Count.
      * 
      * @param args the command line arguments
+     * 
      */
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         //create the introduction page;
-    	LoginPage loginPage = new LoginPage();
-
+    	new LoginPage();
     }
 
 }

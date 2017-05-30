@@ -32,7 +32,11 @@ public class GameTest extends junit.framework.TestCase
     {
         // Create a new game from the data file.
         // Player is in position 2,0 & has 100 units of stamina
+<<<<<<< HEAD
         game           = new Game("Username","bgm","warrior.png",10);
+=======
+        game           = new Game("Username","bgm","warrior.png","normal");
+>>>>>>> feature/rank-panel
         playerPosition = game.getPlayer().getPosition();
         player         = game.getPlayer();
         island = game.getIsland();
