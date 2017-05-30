@@ -188,9 +188,4 @@ public class StartPage {
 	     startFrame.setVisible(true);  
 		 
 	 }
-	 
-	 public static void main(String[] args)
-	 {
-		new StartPage("sss");
-		}
 }

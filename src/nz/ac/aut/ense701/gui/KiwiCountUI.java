@@ -2,19 +2,22 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dialog.ModalityType;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.*;
 
-
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 import nz.ac.aut.ense701.gui.LostRestartExit;
+
 
 
 
@@ -40,6 +43,7 @@ public class KiwiCountUI
     {
         assert game != null : "Make sure game object is created before UI";
         this.game = game;
+        jd= new JDialog(this,"Pause page",true);
         setAsGameListener();
         int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 856) / 2;
     	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 667) / 2;
@@ -50,6 +54,7 @@ public class KiwiCountUI
         initIslandGrid();
         update();
         setVisible(true);
+        	   
     }
     
     /**
@@ -103,7 +108,9 @@ public class KiwiCountUI
                     sec = 0;
                     min +=1 ;
                 }else{
+                	if(!suspended){
                 	sec +=1;
+                	}
                 }
                showTime();
            
@@ -176,6 +183,9 @@ public class KiwiCountUI
                 	  Object obj = listObjects.getSelectedValue();
                       game.collectItem(obj);
                 	  break;
+                  case KeyEvent.VK_P:
+                	  createDialog();
+                	  break;
               }  
              
                 
@@ -244,6 +254,7 @@ public class KiwiCountUI
         btnCollect.setFocusable(false);
         btnCount.setEnabled(false);
         btnCount.setFocusable(false);
+        pauseBtn.setFocusable(false);
         
         // update movement buttons
         btnMoveNorth.setEnabled(game.isPlayerMovePossible(MoveDirection.NORTH));
@@ -281,6 +292,7 @@ public class KiwiCountUI
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
         timeCount = new javax.swing.JLabel();
+        pauseBtn = new javax.swing.JButton("Pause");
         timeCount.setFont(new java.awt.Font("Dialog",0,15)); 
         timeCount.setForeground(Color.red);
         javax.swing.JPanel pnlMovement = new javax.swing.JPanel();
@@ -416,6 +428,18 @@ public class KiwiCountUI
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlPlayerData.add(timeCount, gridBagConstraints);
+        
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlPlayerData.add(pauseBtn, gridBagConstraints);
+        pauseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               createDialog();
+            }
+        });
 
         txtKiwisCounted.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -821,6 +845,38 @@ public class KiwiCountUI
     }
     
     
+    private void createDialog(){
+    	game.pause();
+    	suspended = true;
+    	jd= new JDialog(this,"Pause page",true);
+    	int w = (Toolkit.getDefaultToolkit().getScreenSize().width - 200) / 2;
+    	int h = (Toolkit.getDefaultToolkit().getScreenSize().height - 150) / 2;
+    	jd.setLayout(new GridLayout(3, 1));
+    	jd.setLocation(w, h);
+    	jd.getContentPane().add(new JButton(new AbstractAction("Start a new game") {
+    		public void actionPerformed(ActionEvent e) {
+    		   dispose();
+    		   //game
+    		   
+    		}
+    		}));
+    	jd.getContentPane().add(new JButton(new AbstractAction("Resume") {
+    		public void actionPerformed(ActionEvent e) {
+    			suspended = false;
+    			game.resume();
+    			jd.dispose();
+    		}
+    		}));
+    	jd.getContentPane().add(new JButton(new AbstractAction("Exit") {
+    		public void actionPerformed(ActionEvent e) {
+    		 System.exit(0); 
+    		}
+    		}));
+    		jd.setSize(200, 150);
+    		jd.setModalityType(ModalityType.APPLICATION_MODAL);
+    		jd.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
@@ -830,6 +886,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnMoveSouth;
     private javax.swing.JButton btnMoveWest;
     private javax.swing.JButton btnUse;
+    private javax.swing.JButton pauseBtn;
     private javax.swing.JLabel lblKiwisCounted;
     private javax.swing.JLabel lblPredators;
     private javax.swing.JLabel timeCount;
@@ -849,5 +906,7 @@ public class KiwiCountUI
     private Game game;
     private int min =0;
     private int sec =0 ;
+    private JDialog jd;
+    private boolean suspended = false;
  }
 
