@@ -22,8 +22,9 @@ public class StartPage {
 	 private ButtonGroup bsGroup,charGroup;
 	 private JLabel boardsizeLabel,charcterLabel;
 	 private String gameBgm = "1";
-         private String gameCharacter = "warrior.png"; //defaults to warrior.png
-         private int gameBoard = 10;
+     private String gameCharacter = "warrior.png"; //defaults to warrior.png
+     private int gameBoard = 10;
+
 	 
 	 public StartPage(final String username){
 		 startFrame = new JFrame();
@@ -57,8 +58,11 @@ public class StartPage {
 	    	 //startFrame.dispose();
 	    	 startFrame.dispose();
 	         final Game game = new Game(username,gameBgm,gameCharacter,gameBoard);
+
 	         // create the GUI for the game
 	         final KiwiCountUI  gui  = new KiwiCountUI(game);
+	         Thread newThread = new Thread(gui);
+	         newThread.start();
 	         gui.requestFocus();
 	         // make the GUI visible
 	         java.awt.EventQueue.invokeLater(new Runnable() 
@@ -94,6 +98,7 @@ public class StartPage {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				gameBoard = 8;
+
 			}	    	  
 	      });
 	      
@@ -105,6 +110,7 @@ public class StartPage {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				gameBoard = 10;
+
 			}	    	  
 	      });
 	      
@@ -182,5 +188,9 @@ public class StartPage {
 	     startFrame.setVisible(true);  
 		 
 	 }
-
+	 
+	 public static void main(String[] args)
+	 {
+		new StartPage("sss");
+		}
 }

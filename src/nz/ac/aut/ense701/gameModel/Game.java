@@ -1,14 +1,18 @@
 package nz.ac.aut.ense701.gameModel;
 
-import java.applet.AudioClip;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import sun.reflect.generics.tree.ReturnType;
 
 
 
@@ -497,7 +501,7 @@ public class Game
      * @param item to use
      * @return true if the item has been used, false if not
      */
-    public boolean useItem(Object item)
+    public boolean useItem(Object item) 
     {  
         boolean success = false;
         if ( item instanceof Food && player.hasItem((Food) item) )
@@ -618,13 +622,18 @@ public class Game
         else if (!playerCanMove() )
         {
             state = GameState.LOST;
-            message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";
+            message = "Sorry, you have lost the game.You do not have sufficient stamina to move.";
             this.setLoseMessage(message);
         }
         else if(predatorsTrapped == totalPredators)
         {
             state = GameState.WON;
-            message = "You win! You have done an excellent job and trapped all the predators.";
+            message = "You have spent "+min+" minutes "+sec+" seconds to win! You have done an excellent job and trapped all the predators.";
+             try {
+                 insertToFile();
+             } catch (IOException ex) {
+                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+             }
             this.setWinMessage(message);
         }
         else if(kiwiCount == totalKiwis)
@@ -632,10 +641,16 @@ public class Game
             if(predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH)
             {
                 state = GameState.WON;
-                message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
+                message = "You have spent "+min+" minutes "+sec+" seconds to win! You have counted all the kiwi and trapped at least 80% of the predators.";
+                try {
+                    insertToFile();
+                } catch (IOException ex) {
+                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.setWinMessage(message);
             }
         }
+        
         // notify listeners about changes
             notifyGameEventListeners();
     }
@@ -905,14 +920,41 @@ public class Game
         return gameBoard;
     }
         
+     public void insertToFile() throws IOException{
+    	 	FileWriter filewriter = new FileWriter("normal.txt",true);;
+    	 	switch (gameBoard) {
+			case 8:
+				filewriter = new FileWriter("small.txt",true);
+				break;
+			case 10:
+				filewriter = new FileWriter("normal.txt",true);
+				break;
+			case 12:
+				filewriter = new FileWriter("big.txt",true);
+				break;
+
+			default:
+				break;
+			}
+            BufferedWriter out = new BufferedWriter(filewriter);
+            double time = min + (sec/100);
+            out.write(username+"");
+            out.newLine();
+            out.write(time+"");
+            out.newLine();
+            out.flush();  
+            out.close();  
+        }
 
 
+    public int min,sec;
     private MusicPlayer mplayer;
 	private Island island;
     private Player player;
     private String username,bgm;
     private String gameCharacter;
     private int gameBoard;
+
     private String songNo;
     private GameState state;
     private int kiwiCount;
