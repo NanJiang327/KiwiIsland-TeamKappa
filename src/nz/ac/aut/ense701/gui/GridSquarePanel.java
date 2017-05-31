@@ -55,25 +55,73 @@ public class GridSquarePanel extends javax.swing.JPanel
         Terrain terrain   = game.getTerrain(row, column);
         boolean squareVisible = game.isVisible(row, column);
         boolean squareExplored = game.isExplored(row, column);
-        switch ( terrain )
-        {
-                case SAND     : 
-                	setImage("sand.png");
-                	break;
-                case FOREST   : 
-                	setImage("green.png");  
-                	break;
-                case WETLAND : 
-                	setImage("wet.png");
-                	break;
-                case SCRUB : 
-                	setImage("scrub.png");
-                	break;
-                case WATER    : 
-                	setImage("water.png");
-                	break;
-                default  : setImage(game.getGameCharacter()); break;
-
+        if(game.getGameBoardSize()==8){
+	        switch ( terrain )
+	        {
+	                case SAND     : 
+	                	setBigImage("sand.png");
+	                	break;
+	                case FOREST   : 
+	                	setBigImage("green.png");  
+	                	break;
+	                case WETLAND : 
+	                	setBigImage("wet.png");
+	                	break;
+	                case SCRUB : 
+	                	setBigImage("scrub.png");
+	                	break;
+	                case WATER    : 
+	                	setBigImage("water.png");
+	                	break;
+	                default  : setBigImage(game.getGameCharacter()); break;
+	
+	        }
+        }
+        
+        if(game.getGameBoardSize()==10){
+	        switch ( terrain )
+	        {
+	                case SAND     : 
+	                	setImage("sand.png");
+	                	break;
+	                case FOREST   : 
+	                	setImage("green.png");  
+	                	break;
+	                case WETLAND : 
+	                	setImage("wet.png");
+	                	break;
+	                case SCRUB : 
+	                	setImage("scrub.png");
+	                	break;
+	                case WATER    : 
+	                	setImage("water.png");
+	                	break;
+	                default  : setImage(game.getGameCharacter()); break;
+	
+	        }
+        }
+        
+        if(game.getGameBoardSize()==12){
+	        switch ( terrain )
+	        {
+	                case SAND     : 
+	                	setSmallImage("sand.png");
+	                	break;
+	                case FOREST   : 
+	                	setSmallImage("green.png");  
+	                	break;
+	                case WETLAND : 
+	                	setSmallImage("wet.png");
+	                	break;
+	                case SCRUB : 
+	                	setSmallImage("scrub.png");
+	                	break;
+	                case WATER    : 
+	                	setSmallImage("water.png");
+	                	break;
+	                default  : setSmallImage(game.getGameCharacter()); break;
+	
+	        }
         }
         
         if ( squareExplored || squareVisible )
@@ -91,19 +139,53 @@ public class GridSquarePanel extends javax.swing.JPanel
             if(game.hasPlayer(row, column)){
             	setImage(game.getGameCharacter());
             }else{
-            if(occupantSymbol.contains("K")){
-            	setImage("kiwi.png");}
-            if(occupantSymbol.contains("F")){
-            	setImage("animal.png");}
-            if( occupantSymbol.contains("P")){
-            	setImage("predator.png");}
-            if(occupantSymbol.contains("H")){
-            	setImage("hole.png");
+            	if(game.getGameBoardSize()==8){
+		            if(occupantSymbol.contains("K")){
+		            	setBigImage("kiwi.png");}
+		            if(occupantSymbol.contains("F")){
+		            	setBigImage("animal.png");}
+		            if( occupantSymbol.contains("P")){
+		            	setBigImage("predator.png");}
+		            if(occupantSymbol.contains("H")){
+		            	setBigImage("hole.png");
+		            	}
+		            if(occupantSymbol.contains("T")){
+		            	setBigImage("tool.png");}
+		            if(occupantSymbol.contains("E")){
+		            	setBigImage("food.png");}
             	}
-            if(occupantSymbol.contains("T")){
-            	setImage("tool.png");}
-            if(occupantSymbol.contains("E")){
-            	setImage("food.png");}
+            	
+            	if(game.getGameBoardSize()==10){
+		            if(occupantSymbol.contains("K")){
+		            	setImage("kiwi.png");}
+		            if(occupantSymbol.contains("F")){
+		            	setImage("animal.png");}
+		            if( occupantSymbol.contains("P")){
+		            	setImage("predator.png");}
+		            if(occupantSymbol.contains("H")){
+		            	setImage("hole.png");
+		            	}
+		            if(occupantSymbol.contains("T")){
+		            	setImage("tool.png");}
+		            if(occupantSymbol.contains("E")){
+		            	setImage("food.png");}
+            	}
+            	
+            	if(game.getGameBoardSize()==12){
+		            if(occupantSymbol.contains("K")){
+		            	setSmallImage("kiwi.png");}
+		            if(occupantSymbol.contains("F")){
+		            	setSmallImage("animal.png");}
+		            if( occupantSymbol.contains("P")){
+		            	setSmallImage("predator.png");}
+		            if(occupantSymbol.contains("H")){
+		            	setSmallImage("hole.png");
+		            	}
+		            if(occupantSymbol.contains("T")){
+		            	setSmallImage("tool.png");}
+		            if(occupantSymbol.contains("E")){
+		            	setSmallImage("food.png");}
+            	}
             }
       
             setBorder(game.hasPlayer(row,column) ? activeBorder : normalBorder);
@@ -119,25 +201,72 @@ public class GridSquarePanel extends javax.swing.JPanel
     
     public void clearBackground() {
     	Terrain terrain   = game.getTerrain(row, column);
-        switch ( terrain )
-        {
-            case SAND     : 
-            	setImage("sand.png");
-            	break;
-            case FOREST   : 
-            	setImage("green.png");  
-            	break;
-            case WETLAND : 
-            	setImage("wet.png");
-            	break;
-            case SCRUB : 
-            	setImage("scrub.png");
-            	break;
-            case WATER    : 
-            	setImage("water.png");
-            	break;
-            default  : setImage(null); break;
-        }
+    	
+    	if(game.getGameBoardSize()==8){
+	        switch ( terrain )
+	        {
+	            case SAND     : 
+	            	setBigImage("sand.png");
+	            	break;
+	            case FOREST   : 
+	            	setBigImage("green.png");  
+	            	break;
+	            case WETLAND : 
+	            	setBigImage("wet.png");
+	            	break;
+	            case SCRUB : 
+	            	setBigImage("scrub.png");
+	            	break;
+	            case WATER    : 
+	            	setBigImage("water.png");
+	            	break;
+	            default  : setBigImage(null); break;
+	        }
+    	}
+    	
+    	if(game.getGameBoardSize()==10){
+	        switch ( terrain )
+	        {
+	            case SAND     : 
+	            	setImage("sand.png");
+	            	break;
+	            case FOREST   : 
+	            	setImage("green.png");  
+	            	break;
+	            case WETLAND : 
+	            	setImage("wet.png");
+	            	break;
+	            case SCRUB : 
+	            	setImage("scrub.png");
+	            	break;
+	            case WATER    : 
+	            	setImage("water.png");
+	            	break;
+	            default  : setImage(null); break;
+	        }
+    	}
+    	
+    	if(game.getGameBoardSize()==12){
+	        switch ( terrain )
+	        {
+	            case SAND     : 
+	            	setSmallImage("sand.png");
+	            	break;
+	            case FOREST   : 
+	            	setSmallImage("green.png");  
+	            	break;
+	            case WETLAND : 
+	            	setSmallImage("wet.png");
+	            	break;
+	            case SCRUB : 
+	            	setSmallImage("scrub.png");
+	            	break;
+	            case WATER    : 
+	            	setSmallImage("water.png");
+	            	break;
+	            default  : setSmallImage(null); break;
+	        }
+    	}
     }
     public void setBackground() {
         setImage(game.getGameCharacter());     
@@ -157,6 +286,27 @@ public class GridSquarePanel extends javax.swing.JPanel
             System.out.println("Couldn't find file");
         }
     }
+    
+    public void setSmallImage(String fileName) {
+        String workingDirectory = System.getProperty("user.dir");
+        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "iconForSmallBoard" + File.separator);
+        try {
+            backgroundImage = ImageIO.read(new File(basePath + fileName));
+        } catch(Exception ex) {
+            System.out.println("Couldn't find file");
+        }
+    }
+    
+    public void setBigImage(String fileName) {
+        String workingDirectory = System.getProperty("user.dir");
+        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "iconForBigBoard" + File.separator);
+        try {
+            backgroundImage = ImageIO.read(new File(basePath + fileName));
+        } catch(Exception ex) {
+            System.out.println("Couldn't find file");
+        }
+    }
+    
     
     /** This method is called from within the constructor to
      * initialize the form.
