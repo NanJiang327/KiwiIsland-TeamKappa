@@ -913,6 +913,10 @@ public class Game
         }
     }    
 
+    public String getUsername(){
+    	return this.username;
+    }
+    
     public String getGameCharacter() {
         return this.gameCharacter;
     }

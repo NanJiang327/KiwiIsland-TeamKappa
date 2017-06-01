@@ -855,8 +855,26 @@ public class KiwiCountUI
     	jd.setLocation(w, h);
     	jd.getContentPane().add(new JButton(new AbstractAction("Start a new game") {
     		public void actionPerformed(ActionEvent e) {
-    		   dispose();
-    		   //game
+    			String username = game.getUsername();
+    			String gameBgm = game.getBgm();
+    			String gameCharacter = game.getGameCharacter();
+    			int gameBoard = game.getGameBoardSize();
+    			dispose();
+    			Game NewGame = new Game(username,gameBgm,gameCharacter,gameBoard);
+	    		 KiwiCountUI  gui  = new KiwiCountUI(NewGame);
+	  	         Thread newThread = new Thread(gui);
+	  	         newThread.start();
+	  	         gui.requestFocus();
+	  	         // make the GUI visible
+	  	         java.awt.EventQueue.invokeLater(new Runnable() 
+	  	         {
+	  	             @Override
+	  	             public void run() 
+	  	             {
+	  	                 gui.setVisible(true);
+	  	             }
+	  	         });
+  	          
     		   
     		}
     		}));
