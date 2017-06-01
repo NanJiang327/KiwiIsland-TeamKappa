@@ -20,9 +20,9 @@ public class LoginTest {
 	 */
 	@Test
 	public void checkVerify() throws IOException{
-		Boolean verified = false;
+		Boolean verified = true;
 		String username = "j499521010";
-		String pwd  = "12312355";
+		String pwd  = "123123";
 		String hashedPwd = Hashing.generatePassword(pwd);
 	    userinfo.verify(username, hashedPwd);
 	    assertEquals(userinfo.isVerified(),verified);
