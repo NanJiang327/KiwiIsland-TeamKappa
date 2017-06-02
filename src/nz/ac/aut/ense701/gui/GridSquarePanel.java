@@ -126,7 +126,7 @@ public class GridSquarePanel extends javax.swing.JPanel
         
         if ( squareExplored || squareVisible )
         {
-            String occupantSymbol = game.getOccupantStringRepresentation(row, column);
+            String occupantName = game.getOccupantStringName(row, column);
 
             if(game.hasPlayer(row,column)) {
                 setBackground();
@@ -140,51 +140,158 @@ public class GridSquarePanel extends javax.swing.JPanel
             	setImage(game.getGameCharacter());
             }else{
             	if(game.getGameBoardSize()==8){
-		            if(occupantSymbol.contains("K")){
+		            if(occupantName.contains("Sandwich")){
+		            	setBigImage("sandwich.png");}
+		            if(occupantName.contains("Muesli Bar")){
+		            	setBigImage("muesli_bar.png");}
+		            if( occupantName.contains("Apple")){
+		            	setBigImage("apple.png");}
+		            if(occupantName.contains("Orange")){
+		            	setBigImage("orange_juice.png");
+		            	}
+		            if(occupantName.contains("Trap")){
+		            	setBigImage("trap.png");}
+		            if(occupantName.contains("Screwdriver")){
+		            	setBigImage("screwdriver.png");}
+		            if(occupantName.contains("Oystercatcher")){
+		            	setBigImage("Oystercatcher.png");}
+		            if(occupantName.contains("Crab")){
+		            	setBigImage("crab.png");}
+		            if(occupantName.contains("Fernbird")){
+		            	setBigImage("Fernbird.png");}
+		            if(occupantName.contains("Heron")){
+		            	setBigImage("heron.png");}
+		            if(occupantName.contains("Robin")){
+		            	setBigImage("robin.png");}
+		            if(occupantName.contains("Tui")){
+		            	setBigImage("tui.png");}
+		            if(occupantName.contains("Kiwi")){
 		            	setBigImage("kiwi.png");}
-		            if(occupantSymbol.contains("F")){
-		            	setBigImage("animal.png");}
-		            if( occupantSymbol.contains("P")){
-		            	setBigImage("predator.png");}
-		            if(occupantSymbol.contains("H")){
-		            	setBigImage("hole.png");
-		            	}
-		            if(occupantSymbol.contains("T")){
-		            	setBigImage("tool.png");}
-		            if(occupantSymbol.contains("E")){
-		            	setBigImage("food.png");}
+		            if(occupantName.contains("Rat")){
+		            	setBigImage("rat.png");}
+		            if(occupantName.contains("Cat")){
+		            	setBigImage("cat.png");}
+		            if(occupantName.contains("Stota")){
+		            	setBigImage("Stoat.png");}
+		            if(occupantName.contains("Possum")){
+		            	setBigImage("possum.png");}
+		            if(occupantName.contains("Cliff")){
+		            	setBigImage("cliff.png");}
+		            if(occupantName.contains("Pond")){
+		            	setBigImage("pond.png");}
+		            if(occupantName.contains("Rock")){
+		            	setBigImage("rock.png");}
+		            if(occupantName.contains("Sunburn")){
+		            	setBigImage("sunburn.png");}
+		            if(occupantName.contains("Fall")){
+		            	setBigImage("fall.png");}
+		            if(occupantName.contains("Broken trap")){
+		            	setBigImage("broken_trap.png");}
+		            if(occupantName.contains("Kiore")){
+		            	setBigImage("kiore.png");}
             	}
-            	
             	if(game.getGameBoardSize()==10){
-		            if(occupantSymbol.contains("K")){
-		            	setImage("kiwi.png");}
-		            if(occupantSymbol.contains("F")){
-		            	setImage("animal.png");}
-		            if( occupantSymbol.contains("P")){
-		            	setImage("predator.png");}
-		            if(occupantSymbol.contains("H")){
-		            	setImage("hole.png");
+            		if(occupantName.contains("Sandwich")){
+		            	setImage("sandwich.png");}
+		            if(occupantName.contains("Muesli Bar")){
+		            	setImage("muesli_bar.png");}
+		            if( occupantName.contains("Apple")){
+		            	setImage("apple.png");}
+		            if(occupantName.contains("Orange")){
+		            	setImage("orange_juice.png");
 		            	}
-		            if(occupantSymbol.contains("T")){
-		            	setImage("tool.png");}
-		            if(occupantSymbol.contains("E")){
-		            	setImage("food.png");}
+		            if(occupantName.contains("Trap")){
+		            	setImage("trap.png");}
+		            if(occupantName.contains("Screwdriver")){
+		            	setImage("screwdriver.png");}
+		            if(occupantName.contains("Oystercatcher")){
+		            	setImage("Oystercatcher.png");}
+		            if(occupantName.contains("Crab")){
+		            	setImage("crab.png");}
+		            if(occupantName.contains("Fernbird")){
+		            	setImage("Fernbird.png");}
+		            if(occupantName.contains("Heron")){
+		            	setImage("heron.png");}
+		            if(occupantName.contains("Robin")){
+		            	setImage("robin.png");}
+		            if(occupantName.contains("Tui")){
+		            	setImage("tui.png");}
+		            if(occupantName.contains("Kiwi")){
+		            	setImage("kiwi.png");}
+		            if(occupantName.contains("Rat")){
+		            	setImage("rat.png");}
+		            if(occupantName.contains("Cat")){
+		            	setImage("cat.png");}
+		            if(occupantName.contains("Stota")){
+		            	setImage("Stoat.png");}
+		            if(occupantName.contains("Possum")){
+		            	setImage("possum.png");}
+		            if(occupantName.contains("Cliff")){
+		            	setImage("cliff.png");}
+		            if(occupantName.contains("Pond")){
+		            	setImage("pond.png");}
+		            if(occupantName.contains("Rock")){
+		            	setImage("rock.png");}
+		            if(occupantName.contains("Sunburn")){
+		            	setImage("sunburn.png");}
+		            if(occupantName.contains("Fall")){
+		            	setImage("fall.png");}
+		            if(occupantName.contains("Broken trap")){
+		            	setImage("broken_trap.png");}
+		            if(occupantName.contains("Kiore")){
+		            	setImage("kiore.png");}
             	}
             	
             	if(game.getGameBoardSize()==12){
-		            if(occupantSymbol.contains("K")){
-		            	setSmallImage("kiwi.png");}
-		            if(occupantSymbol.contains("F")){
-		            	setSmallImage("animal.png");}
-		            if( occupantSymbol.contains("P")){
-		            	setSmallImage("predator.png");}
-		            if(occupantSymbol.contains("H")){
-		            	setSmallImage("hole.png");
+            		if(occupantName.contains("Sandwich")){
+		            	setSmallImage("sandwich.png");}
+		            if(occupantName.contains("Muesli Bar")){
+		            	setSmallImage("muesli_bar.png");}
+		            if( occupantName.contains("Apple")){
+		            	setSmallImage("apple.png");}
+		            if(occupantName.contains("Orange")){
+		            	setSmallImage("orange_juice.png");
 		            	}
-		            if(occupantSymbol.contains("T")){
-		            	setSmallImage("tool.png");}
-		            if(occupantSymbol.contains("E")){
-		            	setSmallImage("food.png");}
+		            if(occupantName.contains("Trap")){
+		            	setSmallImage("trap.png");}
+		            if(occupantName.contains("Screwdriver")){
+		            	setSmallImage("screwdriver.png");}
+		            if(occupantName.contains("Oystercatcher")){
+		            	setSmallImage("Oystercatcher.png");}
+		            if(occupantName.contains("Crab")){
+		            	setSmallImage("crab.png");}
+		            if(occupantName.contains("Fernbird")){
+		            	setSmallImage("Fernbird.png");}
+		            if(occupantName.contains("Heron")){
+		            	setSmallImage("heron.png");}
+		            if(occupantName.contains("Robin")){
+		            	setSmallImage("robin.png");}
+		            if(occupantName.contains("Tui")){
+		            	setSmallImage("tui.png");}
+		            if(occupantName.contains("Kiwi")){
+		            	setSmallImage("kiwi.png");}
+		            if(occupantName.contains("Rat")){
+		            	setSmallImage("rat.png");}
+		            if(occupantName.contains("Cat")){
+		            	setSmallImage("cat.png");}
+		            if(occupantName.contains("Stota")){
+		            	setSmallImage("Stoat.png");}
+		            if(occupantName.contains("Possum")){
+		            	setSmallImage("possum.png");}
+		            if(occupantName.contains("Cliff")){
+		            	setSmallImage("cliff.png");}
+		            if(occupantName.contains("Pond")){
+		            	setSmallImage("pond.png");}
+		            if(occupantName.contains("Rock")){
+		            	setSmallImage("rock.png");}
+		            if(occupantName.contains("Sunburn")){
+		            	setSmallImage("sunburn.png");}
+		            if(occupantName.contains("Fall")){
+		            	setSmallImage("fall.png");}
+		            if(occupantName.contains("Broken trap")){
+		            	setSmallImage("broken_trap.png");}
+		            if(occupantName.contains("Kiore")){
+		            	setSmallImage("kiore.png");}
             	}
             }
       
@@ -289,21 +396,21 @@ public class GridSquarePanel extends javax.swing.JPanel
     
     public void setSmallImage(String fileName) {
         String workingDirectory = System.getProperty("user.dir");
-        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "iconForSmallBoard" + File.separator);
+        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "iconForBigBoard" + File.separator);
         try {
             backgroundImage = ImageIO.read(new File(basePath + fileName));
         } catch(Exception ex) {
-            System.out.println("Couldn't find file");
+            System.out.println("Couldn't find file "+fileName+"");
         }
     }
     
     public void setBigImage(String fileName) {
         String workingDirectory = System.getProperty("user.dir");
-        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "iconForBigBoard" + File.separator);
+        String basePath = (workingDirectory + File.separator + "src" + File.separator + "images" + File.separator + "iconForSmallBoard" + File.separator);
         try {
             backgroundImage = ImageIO.read(new File(basePath + fileName));
         } catch(Exception ex) {
-            System.out.println("Couldn't find file");
+            System.out.println("Couldn't find file "+fileName+" ");
         }
     }
     

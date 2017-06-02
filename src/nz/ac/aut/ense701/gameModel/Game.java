@@ -248,6 +248,11 @@ public class Game
         return island.getOccupantStringRepresentation(new Position(island, row, column));
     }
     
+    public String getOccupantStringName(int row, int column) {
+        return island.getOccupantStringName(new Position(island, row, column));
+    }
+    
+    
     /**
      * Get values from player for GUI display
      * @return player values related to stamina and backpack.

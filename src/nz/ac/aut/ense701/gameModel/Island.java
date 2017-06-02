@@ -137,6 +137,11 @@ public class Island
         return square.getOccupantStringRepresentation();
     }
     
+    public String getOccupantStringName(Position position)
+    {
+    	GridSquare square = getGridSquare(position);
+        return square.getOccupantStringName();
+    }
     /**
      * Checks if this position contains a predator.
      * @param position which position 

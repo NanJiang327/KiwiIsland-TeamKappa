@@ -67,7 +67,7 @@ public class InstructionPanel {
         				+ "\n1.Using the keyboard arrow keys allows you to move your character's current position; Left Arrow to move West, "
                 		+ "Up Arrow to move North, Right Arrow to move East and Down Arrow to move South."
                 		+ "\n2.Using the mouse to click the desired Movement buttons i.e. West, North, East and South in the game board allows you to move your character's current position."
-                		+ "\n3.Press F2 to pause the music, F1 for last song and F3 for next song."
+                		+ "\n3.Press F2 to play the music and pause F2 again to pause the music, F1 for last song and F3 for next song."
                 		+ "\n3.Press C to collect the items.");
         		
         	}

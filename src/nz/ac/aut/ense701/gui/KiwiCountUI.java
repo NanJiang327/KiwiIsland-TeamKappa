@@ -75,7 +75,6 @@ public class KiwiCountUI
             this.pnlIsland.repaint();
             this.pnlIsland.revalidate();
             this.dispose();
-        	game.stop();
             new LostRestartExit(game);   
         	      
         }
@@ -85,7 +84,6 @@ public class KiwiCountUI
             this.pnlIsland.repaint();
             this.pnlIsland.revalidate();
             this.dispose();
-        	game.stop();
             new LostRestartExit(game);    
             
         }
@@ -178,7 +176,11 @@ public class KiwiCountUI
                 	  break;
                   case KeyEvent.VK_F3:
                 	  game.nextSong();
-                	  break;
+                	  break; 
+                	  case KeyEvent.VK_F4:
+                    	  game.getOccupantDescription("E");
+                    	  break;
+                	  
                   case KeyEvent.VK_C:
                 	  Object obj = listObjects.getSelectedValue();
                       game.collectItem(obj);

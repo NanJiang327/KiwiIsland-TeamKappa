@@ -32,7 +32,7 @@ public class GameTest extends junit.framework.TestCase
     {
         // Create a new game from the data file.
         // Player is in position 2,0 & has 100 units of stamina
-        game           = new Game("Username","bgm","warrior.png",10);
+        game           = new Game("j234567","1","warrior.png",10);
         playerPosition = game.getPlayer().getPosition();
         player         = game.getPlayer();
         island = game.getIsland();
@@ -104,7 +104,7 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testGetPlayer(){
         String name = player.getName();
-        String checkName = "River Song";
+        String checkName = "j234567";
         assertTrue("Check player name", name.equals(checkName) );
     } 
 
