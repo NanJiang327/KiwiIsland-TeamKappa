@@ -19,14 +19,26 @@ public class LoginTest {
 	 * Test of verify method of UserInfo
 	 */
 	@Test
-	public void checkVerify() throws IOException{
+	public void checkIfSuccess() throws IOException{
+		userinfo = new Userinfo();
 		Boolean verified = true;
-		String username = "j499521010";
+		String username = "j234567";
 		String pwd  = "123123";
-		String hashedPwd = Hashing.generatePassword(pwd);
-	    userinfo.verify(username, hashedPwd);
+	    userinfo.verify(username, pwd);
 	    assertEquals(userinfo.isVerified(),verified);
 	   
 	}
+	
+	@Test
+	public void checkIffail() throws IOException{
+		userinfo = new Userinfo();
+		Boolean verified = false;
+		String username = "j234567";
+		String pwd  = "12312323";
+	    userinfo.verify(username, pwd);
+	    assertEquals(userinfo.isVerified(),verified);
+	   
+	}
+
 
 }

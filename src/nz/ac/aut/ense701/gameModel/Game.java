@@ -46,7 +46,6 @@ public class Game
         this.bgm = bgm;
         this.gameCharacter = gameCharacter;
         this.gameBoard = gameBoard;
-        playBgm(bgm);
         createNewGame();
     }
     
