@@ -61,7 +61,7 @@ public class LostRestartExit {
         } else if (GameState == GameState.WON) {
             dispMsg.setText("" + game.getWinMessage());
             dispMsg.setForeground(new java.awt.Color(0, 0, 0));
-            dispMsg.setFont(new java.awt.Font("Tandysoft", 1, 16));
+            dispMsg.setFont(new java.awt.Font("Tandysoft", 1, 12));
             dispMsg.setOpaque(false);
         }
     }
@@ -81,12 +81,12 @@ public class LostRestartExit {
         NewGame = new javax.swing.JButton("Reset Game");
         dispMsg = new JTextArea();
         dispMsg = new JTextArea(20,30);
+        dispMsg.setFont(new java.awt.Font("Tandysoft", 1, 12));
         dispMsg.setLineWrap(true);
         dispMsg.setWrapStyleWord(true);
         dispMsg.setTabSize(4);
         dispMsg.setBackground(Color.white);
         dispMsg.setEditable(false);
-        dispMsg.setFont(new  java.awt.Font("Dialog",   1,   30));
         gameStatePanel  = new JPanel();
 
     
@@ -181,4 +181,5 @@ public class LostRestartExit {
     private javax.swing.JButton RestartButton;
     private javax.swing.JTextArea dispMsg;
     // End of variables declaration//GEN-END:variables
+    
 }

@@ -956,7 +956,7 @@ public class Game
         }
 
 
-    public int min,sec;
+    public double min,sec;
     private MusicPlayer mplayer;
 	private Island island;
     private Player player;
