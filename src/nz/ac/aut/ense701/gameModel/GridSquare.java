@@ -95,6 +95,16 @@ public class GridSquare
         return result;
     } 
     
+    public String getOccupantStringName()
+    {
+        String result = "";
+        for(Occupant occupant : occupants)
+        {
+            result += occupant.getName();
+        }
+        return result;
+    } 
+    
     /**
      * Returns a string representation of the terrain.
      * 

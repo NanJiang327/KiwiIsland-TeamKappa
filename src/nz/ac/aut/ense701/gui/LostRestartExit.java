@@ -45,6 +45,7 @@ public class LostRestartExit {
         gameStateFrame.setTitle("Game State");
         this.game = game;
         this.GameState = game.getState();
+        game.stop();
         gameStateFrame.setVisible(true);
         writeMessage();
     }
