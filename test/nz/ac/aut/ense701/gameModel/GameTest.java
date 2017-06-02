@@ -104,7 +104,7 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testGetPlayer(){
         String name = player.getName();
-        String checkName = "River Song";
+        String checkName = "j234567";
         assertTrue("Check player name", name.equals(checkName) );
     } 
 
